@@ -7,67 +7,76 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <style type="text/css">   
+  <style type="text/css">  
 body {  
-  
+ 
   background-image: url("back.png");
-  background-size: 100% 100%;
-
+  background-size: 100%;
+ 
 }
-
-</style> 
+</style>
 </head>
+
 
 <body>
 
 <!--LOGIN HEADER-->
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-custom">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">               
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">              
                  <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-          <a class="navbar-brand" href="home.php">Website Name</a>
+          <a class="navbar-brand" href="home.php"> <img src="logo.png" alt="Brand"></a>
             </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <form class="navbar-form navbar-right">
+       <form action="Login.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
-          <input type="email" id="email" class="form-control" placeholder="Email">
-          <input type="password" id="pw" class="form-control" placeholder="Password">
-         <a href="login.php"> <button type="submit" class="btn btn-default">Login</button></a>
+          <input type="email" id="email"  name="email" class="form-control" placeholder="Email">
+          <input type="password" id="pw" name="pw" class="form-control" placeholder="Password">
+         <input type="submit" class="btn btn-success"  value="Login"  >
         </div>
-      </form>
+        </form>
     </div>
   </div>
 </nav>
 
-<!--SIGNUP FORM-->
 
+<!--SIGNUP FORM-->
+ 
 <div class="container">
-  <h2><span class="glyphicon glyphicon-user"></span> Sign up</h2><br>
-  <form class="form-horizontal" action="registration.php" id="form" method="post">
+
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Error!</strong> Your Email Address or Password is incorrect.
+</div>
+  <div >
+    <h2><span class="glyphicon glyphicon-user"></span> Sign Up</h2><br>
+  </div>
+  <br>
+  <form class="form-horizontal" action="Registration.php" id="form" method="post">
           <!--EMAIL-->
     <div class="form-group">
-      <label class="col-sm-2 control-label">Email</label>
+      <label class="col-sm-2 control-label">Email Address</label>
       <div class="col-sm-4">
-        <input class="form-control" id="email" type="email" placeholder="example@example.com">
+        <input class="form-control" name="Email" id="email" type="email" placeholder="example@example.com">
       </div>
       <!--PASSWORD-->
     </div>
     <div class="form-group">
       <label for="inputPassword" class="col-sm-2 control-label">Password</label>
       <div class="col-sm-4">
-        <input class="form-control" id="pw" type="password">
+        <input class="form-control" id="pw" name="pw" type="password">
       </div>
 <!--CONFRIM_PASSWORD-->
     </div>
     <div class="form-group">
       <label for="inputPassword" class="col-sm-2 control-label">Confrim Password</label>
       <div class="col-sm-4">
-        <input class="form-control" id="c_pc" type="password">
+        <input class="form-control" id="c_pc" name="C_pw" type="password">
       </div>
 
       <!--NAME-->
@@ -75,13 +84,13 @@ body {
       <div class="form-group">
         <label  class="col-sm-2 control-label">First Name</label>
         <div class="col-sm-4">
-        <input class="form-control" id="firstname" type="text">
+        <input class="form-control" id="firstname" name="fname" type="text">
         </div>
       </div>
       <div class="form-group">
         <label  class="col-sm-2 control-label">Last Name</label>
         <div class="col-sm-4">
-        <input class="form-control" id="lastname" type="text">
+        <input class="form-control" id="lastname" name="lname" type="text">
         </div>
       </div>
 
@@ -89,7 +98,7 @@ body {
       <div class="form-group">
         <label  class="col-sm-2 control-label">Phone Number</label>
         <div class="col-sm-4">
-        <input class="form-control" id="phone_num" type="text">
+        <input class="form-control" id="phone_num" name="pnumber" type="text">
         </div>
       </div>
 
@@ -97,7 +106,7 @@ body {
       <div class="form-group">
         <label  class="col-sm-2 control-label">Gender</label>
         <div class="col-sm-4">
-       <select class="form-control" id="gender">
+       <select class="form-control" name="gender" id="gender">
       <option>Male</option>
       <option>Female</option>
       </select>
@@ -283,7 +292,7 @@ body {
       <div class="form-group">
         <label  class="col-sm-2 control-label">Hometown</label>
         <div class="col-sm-4">
-        <input class="form-control" id="hometown" type="text">
+        <input class="form-control" id="hometown" name="hometown" type="text">
         </div>
       </div>
 
@@ -291,7 +300,7 @@ body {
       <div class="form-group">
         <label  class="col-sm-2 control-label">Marital Status</label>
         <div class="col-sm-4">
-       <select class="form-control" id="status">
+       <select class="form-control" name="ms" id="status">
       <option>Single</option>
       <option>Engaged</option>
       <option>Married</option>
@@ -303,20 +312,17 @@ body {
       <div class="form-group">
         <label  class="col-sm-2 control-label">About You</label>
         <div class="col-sm-4">
-        <textarea class="form-control" id="about_me" type="text" >
+        <textarea class="form-control" id="about_me" name="About" type="text" >
         </textarea>
         </div>
       </div>
 <!--BUTTON-->
       <label  class="col-sm-2 control-label"></label>
       <input type="submit" class="col-sm-4 btn btn-success" onClick="return check();" value="Register!" >
-
-
 <br>
 <br>
 <br>
 <br>
-
 </form>
 </body>
 </html>
