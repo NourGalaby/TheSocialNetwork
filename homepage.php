@@ -1,62 +1,35 @@
-<?php
-
-$Firstname = $_POST['fname'];
-$Lastname = $_POST['lname'];
-$Password = $_POST['pw'];
-$C_Password = $_POST['C_pw'];
-$EmailAdress = $_POST['Email'];
-$PhoneNumber = $_POST['pnumber'];
-$Birthdate_Day=$_POST['day'];
-$Birthdate_Month=$_POST['month'];
-$Birthdate_Year=$_POST['birthyear'];
-$Gender=$_POST['gender'];
-$Hometown=$_POST['hometown'];
-$MaritalStatus=$_POST['ms'];
-$AboutYou=$_POST['About'];
+<?php 
+$id = 1;
 
 
+require('connect.php');
 
-$servername = "localhost";
-$db_username = "root";
-$db_password = "";
-$db_name="facebook";
-// Create connection
+$sql = "SELECT p.post_id,l.first_name,l.last_name,p.post_date,p.is_public,p.caption
+FROM member as m 
+Join friend_list as  f 
+on m.member_id = f.member_id
+JOIN post as p
+ON p.member_id = f.friend_id
+Join member as l
+on p.member_id = l.member_id
+WHERE m.member_id=1;
+";
 
 
+$query=mysqli_query($conn,$sql) or die(mysqli_error());
 
-$conn = new mysqli($servername, $db_username, $db_password,$db_name);
+//echo " HERE !!!!!!!!!!!!!!";
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: <br/> " . $conn->connect_error);
-} 
 
-$sql = "SELECT * FROM member WHERE email='$EmailAdress'";
-
-if($result = mysqli_query($conn, $sql)){
-    if(mysqli_num_rows($result) > 0){
-	echo "Error: Username already exists ";
- $cssFile = "Course.css";
-     echo "<link rel='stylesheet' href='" . $cssFile . "'>";
-     echo <<<HTML
-<body>
-
-</body>
-HTML;
+WHILE ($rows = mysqli_fetch_array($query)){
+	//var_dump($rows);
+	echo $rows['post_id']."<br>";
+echo $rows['first_name'];
+echo ' ';
+echo $rows['last_name']."<br>";
+echo $rows['post_date']."<br>";
+echo $rows['caption']."<br>";
+echo $rows['is_public']."<br>";
+echo "<br>";
 }
-else{
-$sql="INSERT INTO `member`( `email`, `password`, `first_name` , `last_name`, `gender` , `birthdate` , `phone_number` , `hometown` , `about_me` , `marital_status` )
-VALUES ('$EmailAdress' ,  md5('$Password') ,  '$Firstname' , '$Lastname' , '$Gender' , '$Birthdate_Year-$Birthdate_Month-$Birthdate_Day', '$PhoneNumber' , '$Hometown' , '$MaritalStatus' , '$AboutYou')";
-
-}
-}
-if($query=mysqli_query($conn,$sql))
- {
- /// Go to profile
- die();
-  }
-   else
-   echo"error <br/>" .$sql. "<br>" .mysqli_error($conn);
-
-
 ?>

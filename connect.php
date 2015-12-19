@@ -7,7 +7,7 @@ $db_password = "";
 $db_name="facebook";
 // Create connection
 
-
+//echo " Connected to da ";
 
 $conn = new mysqli($servername, $db_username, $db_password,$db_name);
 
