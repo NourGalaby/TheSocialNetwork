@@ -35,7 +35,11 @@ else{
 
 
  
- $sel = "SELECT member_id FROM member WHERE email='$Email'";
+
+
+
+if($enc_password==md5($Password)){
+   $sel = "SELECT member_id FROM member WHERE email='$Email'";
  $result = mysqli_query($conn, $sel);
  $row= mysqli_fetch_assoc($result);
  $Member_ID=$row["member_id"];
@@ -45,9 +49,6 @@ else{
  $_SESSION["S_user_id"]=$Member_ID;
 
 
-
-if($enc_password==md5($Password)){
-    
 /// Go to profile 
 
 
