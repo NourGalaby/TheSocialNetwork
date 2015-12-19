@@ -1,8 +1,40 @@
+
+<?php 
+require('connect.php');
+ ?>
+
+<html>
+<body>
+
+<div class="container">
+  <h2>Make a new Post</h2>
+
+  <form role="form" action="Post_enter.php" id="form" method="post">
+    <div class="form-group">
+
+      <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
 <?php 
 $id = 1;
+//print each post
 
 
-require('connect.php');
 
 $sql = "SELECT p.post_id,l.first_name,l.last_name,p.post_date,p.is_public,p.caption
 FROM member as m 

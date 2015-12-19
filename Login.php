@@ -50,7 +50,8 @@ if($enc_password==md5($Password)){
 
 
 /// Go to profile 
-
+ echo "<br>   You Logged in.. You will be redirected to HomePage <br> ";
+   echo ' <meta http-equiv="refresh" content="1;url=homepage.php" />';
 
 }
 else{
