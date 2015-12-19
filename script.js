@@ -53,6 +53,11 @@ function validate()
          return false;
       }
 
+      if(pnum.length>11){
+         window.alert('Error: Invalid Phone Number ');
+         return false;
+      }
+      
       if(pnum.length>0){
       if(validate_phone(pnum)==false)
         return false;
