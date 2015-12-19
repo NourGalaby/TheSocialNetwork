@@ -18,6 +18,7 @@ function check_username(){
                 }
                 else {
                      alert('Error: Email already used');
+                     flag =0;
                      //do perform other actions like displaying error messages etc.,
                 }
             }

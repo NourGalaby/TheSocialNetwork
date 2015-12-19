@@ -4,6 +4,14 @@ function validate()
     var em=e_mail.value;
     var passw=psw.value;
     var cpw=c_psw.value;
+    var fname=firstname.value;
+    var lname=lastname.value;
+
+    var pnum=phone_num.value;
+    var bday=day.value;
+    var bmonth=month.value;
+    var byear=birthyear.value;
+
     
     
        var f =getflag();
@@ -21,7 +29,7 @@ function validate()
          return false;
       }
 
-      else if(passw.length<1 || psw.length>14)
+      else if(passw.length<6 || psw.length>14)
       {
         window.alert('Error: Check password length \nIt must be between 6 to 14 characters');
          return false;
@@ -33,6 +41,41 @@ function validate()
          return false;
       }
       
+      if(empty_check(fname)==false )
+      {
+        window.alert('Error: Empty Firstname');
+         return false;
+      }
+
+      if(empty_check(lname)==false )
+      {
+        window.alert('Error: Empty Firstname');
+         return false;
+      }
+
+      if(pnum.length>0){
+      if(validate_phone(pnum)==false)
+        return false;
+      }
+
+      if(bday==0)
+      {
+         window.alert('Error: Choose Day in Birthdate ');
+         return false;
+      }
+
+      if(bmonth==0)
+      {
+         window.alert('Error: Choose Month in Birthdate ');
+         return false;
+      }
+
+      if(byear==0)
+      {
+         window.alert('Error: Choose Year in Birthdate ');
+         return false;
+      }
+
       if(f==0)
       {
          window.alert('Error: Email already used');
@@ -82,3 +125,18 @@ function validate()
     alert('Error: Invalid email address');
     return false;}
   } 
+
+
+  function validate_phone(pnum)
+  {
+   var filter = /^([0]{1})+([1]{1})+([0-2]{1})+([0-9]{8})/;
+
+    if (!filter.test(pnum)) {
+    alert('Error: Invalid Phone Number');
+    return false;}
+
+  }
+
+
+
+
