@@ -23,17 +23,12 @@ $sql = "SELECT * FROM member WHERE email='$EmailAdress'";
 if($result = mysqli_query($conn, $sql)){
     if(mysqli_num_rows($result) > 0){
 	echo "Error: Username already exists ";
- $cssFile = "Course.css";
-     echo "<link rel='stylesheet' href='" . $cssFile . "'>";
-     echo <<<HTML
-<body>
-
-</body>
-HTML;
 }
+
+
 else{
 $sql="INSERT INTO `member`( `email`, `password`, `first_name` , `last_name`, `gender` , `birthdate` , `phone_number` , `hometown` , `about_me` , `marital_status` )
-VALUES ('$EmailAdress' ,  md5('$Password') ,  '$Firstname' , '$Lastname' , '$Gender' , '$Birthdate_Year-$Birthdate_Month-$Birthdate_Day', '$PhoneNumber' , '$Hometown' , '$MaritalStatus' , '$AboutYou')";
+VALUES ('$EmailAdress' ,  md5('$Password') ,  '$Firstname' , '$Lastname' , '$Gender' , '$Birthdate_Year-$Birthdate_Month-$Birthdate_Day', '$PhoneNumber' , '$Hometown' , '$AboutYou' , '$MaritalStatus' )";
 
 }
 }

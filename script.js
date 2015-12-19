@@ -5,9 +5,9 @@ function validate()
     var passw=psw.value;
     var cpw=c_psw.value;
     
-     
-       alert(em);
-
+    
+       var f =getflag();
+       
        if(empty_check(em)==false )
       {
          window.alert('Error: Empty Email');
@@ -33,9 +33,17 @@ function validate()
          return false;
       }
       
+      if(f==0)
+      {
+         window.alert('Error: Email already used');
+         return false;
+
+      }
       
       else if(validate_email(em)==false)
         return false;
+
+
       
 
   }

@@ -1,26 +1,12 @@
-<?php 
+<?php  
 
+$EmailAdd=$_POST['Email'];
 
-$hostname = "localhost";
-$username = "root";
-$password  = "";
-$dbname="facebook";
-// Create connection
+include("connect.php");
 
+$sql = "SELECT * FROM member WHERE email='$EmailAdd'";
 
-    try 
-    {
-        $dbh = new PDO("mysql:host=$hostname;dbname=mysql", $username, $password);
-        /*** echo a message saying we have connected ***/
-        //echo 'Connected to database';
-    }
-    catch(PDOException $e)
-    {
-        echo $e->getMessage();
-    }   
+if($result = mysqli_query($conn, $sql)){
+    echo(mysqli_num_rows($result)); }
 
-    $stmt = $dbh->prepare("SELECT * FROM member where email = ?");
-    $stmt->execute(array($_POST['Email']));
-    echo $stmt->rowCount();
- 
- ?>
+?>
