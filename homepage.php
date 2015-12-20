@@ -125,10 +125,10 @@ body {
     </div>
 
   
-  <div class="checkbox">
-     <input type="radio" name="ispublic" value="true" checked>Public
+<div class="checkbox">
+     <input type="radio" name="ispublic" value="true" checked><b> Public</b>
   <br>
-  <input type="radio" name="ispublic" value="false">Friends only
+  <input type="radio" name="ispublic" value="false"> <b> Friends only </b>
     </div>
 
   </form>
