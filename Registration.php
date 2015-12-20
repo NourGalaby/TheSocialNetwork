@@ -60,12 +60,12 @@ $sel = "SELECT member_id FROM member WHERE email='$EmailAdress'";
 
 
  /// Go to profile
- echo "<br>   Sign up Succeffull , You will be redirected to HomePage <br> ";
+ echo "<br>   Sign up Successful , You will be redirected to HomePage <br> ";
    echo ' <meta http-equiv="refresh" content="1;url=homepage.php" />';
  die();
   }
    else
-   echo "<br>   Sign up Succeffull , You will be redirected to HomePage <br> ";
+   echo "<br>   Sign up Successful , You will be redirected to HomePage <br> ";
    echo ' <meta http-equiv="refresh" content="1;url=SignUp.html" />';
 
 
