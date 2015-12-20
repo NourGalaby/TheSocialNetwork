@@ -108,14 +108,26 @@ body {
 
  <!-- POSSTTTTT -->
 <div class="container">
-<form role="form" action="Post_enter.php" id="form" method="post">
+
+  <form role="form" action="Post_enter.php" id="form" method="post" enctype="multipart/form-data">
     <div class="form-group">
-      <textarea class="form-control" rows="4" id="comment" placeholder="What's on your mind?"></textarea>
- <button type="submit" class="btn btn-success btn-block">Post</button>
+
+      <textarea class="form-control" rows="5" name="caption" id="comment" placeholder="What's on your mind?"></textarea>
+
+       <button type="submit" class="btn btn-success btn-block">Post</button>
 <input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
     </div>
+
+  
+  <div class="checkbox">
+     <input type="radio" name="ispublic" value="true" checked>Public
+  <br>
+  <input type="radio" name="ispublic" value="false">Friends only
+    </div>
+
   </form>
 </div>
+
 
     <!-- End OF POSSTTTTT -->
 <hr>
