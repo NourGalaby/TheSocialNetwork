@@ -1,7 +1,12 @@
 <?PHP
+session_start();
+ $Firstname= $_SESSION["S_firstname"];
+ $Lastname=$_SESSION["S_lastname"];
+ $EmailAdress=$_SESSION["S_Email"];
+ $mem_id=$_SESSION["S_user_id"];
 
 require('connect.php');
-$member =1;
+$member =$mem_id;
 
 ?>
 
@@ -119,9 +124,9 @@ echo '</h1>';
 
      <input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
       <div class="checkbox">
-     <input type="radio" name="ispublic" value="true" checked><b> Public</b>
+     <input type="radio" name="ispublic" value="true" checked>Public
   <br>
-  <input type="radio" name="ispublic" value="false"> <b> Friends only </b>
+  <input type="radio" name="ispublic" value="false">Friends only
     </div>
   </form>
 </div>
