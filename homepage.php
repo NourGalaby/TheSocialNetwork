@@ -1,41 +1,11 @@
-
 <?php 
 require('connect.php');
  ?>
 
-<html>
-<body>
-
-<div class="container">
-  <h2>Make a new Post</h2>
-
-  <form role="form" action="Post_enter.php" id="form" method="post">
-    <div class="form-group">
-
-      <textarea class="form-control" rows="5" id="comment"></textarea>
-    </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-</div>
-
-
-
-</body>
-</html>
-
-
-
-
-
-
-
-
 <?php 
 $id = 1;
+
 //print each post
-
-
-
 $sql = "SELECT p.post_id,l.first_name,l.last_name,p.post_date,p.is_public,p.caption
 FROM member as m 
 Join friend_list as  f 
@@ -46,22 +16,177 @@ Join member as l
 on p.member_id = l.member_id
 WHERE m.member_id=1;
 ";
-
-
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
-
 //echo " HERE !!!!!!!!!!!!!!";
-
-
 WHILE ($rows = mysqli_fetch_array($query)){
 	//var_dump($rows);
-	echo $rows['post_id']."<br>";
-echo $rows['first_name'];
-echo ' ';
-echo $rows['last_name']."<br>";
-echo $rows['post_date']."<br>";
-echo $rows['caption']."<br>";
-echo $rows['is_public']."<br>";
-echo "<br>";
+//	echo $rows['post_id']."<br>";
+//echo $rows['first_name'];
+//echo ' ';
+//echo $rows['last_name']."<br>";
+//echo $rows['post_date']."<br>";
+//echo $rows['caption']."<br>";
+//echo $rows['is_public']."<br>";
+//echo "<br>";
 }
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="jquery.js" type="text/javascript" language="javascript"></script> 
+  <script src="ajax.js"> </script>
+  <script src="script.js"> </script>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <style type="text/css">  
+body {  
+ 
+  background-image: url("back.png");
+  background-size: 100%;
+ 
+}
+@media (min-width: 768px) {
+    .container{
+        width:800px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!--LOGIN HEADER-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">              
+                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+          <a class="navbar-brand" href="homepage.php"> <img src="logo.png" alt="Brand"></a>
+            </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <form action="signup.html" class="navbar-form navbar-right" method="post">
+        <div class="form-group">
+         <input type="submit" class="btn btn-danger"  value="Logout"  >
+        </div>
+      </form>
+<form action="profile.php" class="navbar-form navbar-right" method="post">
+        <div class="form-group">
+         <input type="submit" class="btn btn-success"  value="View Your Profile"  >
+        </div>
+      </form>
+      <form class="navbar-form navbar-left" action="search.php">
+           <div class = "col-lg-6">
+            <div class = "input-group">
+                <div class="col-sm-1">
+               <input type = "text" class = "form-control" placeholder="What are you looking for?">
+              
+               <span class = "input-group-btn">
+              
+                  <button class = "btn btn-default" type = "submit">
+                     Search
+                  </button>
+                  </div>
+               </span>
+            </div>
+         </div>
+      </form>
+    </div>
+  </div>
+
+</nav>
+
+ <!-- POSSTTTTT -->
+<div class="container">
+<form role="form" action="Post_enter.php" id="form" method="post">
+    <div class="form-group">
+      <textarea class="form-control" rows="4" id="comment" placeholder="What's on your mind?"></textarea>
+ <button type="submit" class="btn btn-success btn-block">Post</button>
+<input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
+    </div>
+  </form>
+</div>
+
+    <!-- End OF POSSTTTTT -->
+<hr>
+
+<!--FRIENDS WITH POSTS-->
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-body">  
+	<div class = "media">
+   <!--<a class = "pull-left" href = "#">
+      <img class = "media-object" src = "/bootstrap/images/64.jpg" alt = "Media Object">
+   </a>
+   <div class = "media-body">-->
+
+<?php 
+$id = 1;
+
+//print each post
+$sql = "SELECT l.profile_pic,p.post_id,l.first_name,l.last_name,p.post_date,p.is_public,p.caption
+FROM member as m 
+Join friend_list as  f 
+on m.member_id = f.member_id
+JOIN post as p
+ON p.member_id = f.friend_id
+Join member as l
+on p.member_id = l.member_id
+WHERE m.member_id=1;
+";
+$query=mysqli_query($conn,$sql) or die(mysqli_error());
+
+WHILE ($rows = mysqli_fetch_assoc($query)){
+	
+	//profile pic
+$mime = "image/jpeg";
+echo "<a class = \"pull-left\" href = \"#\">\n";
+      $b64Src = "data:".$mime.";base64," . base64_encode($rows["profile_pic"]);
+      echo '<img src="'.$b64Src.'" alt="" class="img-circle" width="50" height="50"/>';
+     echo "   </a>\n";
+     //end of profile pic
+echo '   ';
+
+        echo "   <div class = \"media-body\">\n"; 
+
+//name and post
+echo ' <h4 class = "media-heading"> ';
+//echo $rows['post_id']."<br>";
+
+echo $rows['first_name'];
+echo ' ';
+echo $rows['last_name'];
+echo ' ';
+echo "<small>";
+echo $rows['post_date']."<br>";
+echo "</small>";
+echo '</h4>';
+
+echo $rows['caption']."<br>";
+//echo $rows['is_public']."<br>";
+echo "<br>";
+        echo "</div>\n";
+
+}
+
+?>
+
+</div>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>
