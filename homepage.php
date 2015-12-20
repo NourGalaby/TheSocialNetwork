@@ -3,7 +3,13 @@ require('connect.php');
  ?>
 
 <?php 
-$id = 1;
+session_start();
+ $Firstname= $_SESSION["S_firstname"];
+ $Lastname=$_SESSION["S_lastname"];
+ $EmailAdress=$_SESSION["S_Email"];
+ $mem_id=$_SESSION["S_user_id"];
+
+$id = $mem_id;
 
 //print each post
 $sql = "SELECT p.post_id,l.first_name,l.last_name,p.post_date,p.is_public,p.caption
@@ -14,7 +20,7 @@ JOIN post as p
 ON p.member_id = f.friend_id
 Join member as l
 on p.member_id = l.member_id
-WHERE m.member_id=1;
+WHERE m.member_id=$id;
 ";
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
 //echo " HERE !!!!!!!!!!!!!!";
@@ -144,7 +150,7 @@ body {
    <div class = "media-body">-->
 
 <?php 
-$id = 1;
+$id = $mem_id;
 
 //print each post
 $sql = "SELECT l.profile_pic,p.post_id,l.first_name,l.last_name,p.post_date,p.is_public,p.caption
@@ -155,7 +161,7 @@ JOIN post as p
 ON p.member_id = f.friend_id
 Join member as l
 on p.member_id = l.member_id
-WHERE m.member_id=1;
+WHERE m.member_id=$id;
 ";
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
 

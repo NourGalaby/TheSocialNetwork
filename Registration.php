@@ -1,4 +1,5 @@
 <?php
+session_destroy();
 
 $Firstname = $_POST['fname'];
 $Lastname = $_POST['lname'];
@@ -64,7 +65,8 @@ $sel = "SELECT member_id FROM member WHERE email='$EmailAdress'";
  die();
   }
    else
-   echo"error <br/>" .$sql. "<br>" .mysqli_error($conn);
+   echo "<br>   Sign up Succeffull , You will be redirected to HomePage <br> ";
+   echo ' <meta http-equiv="refresh" content="1;url=SignUp.html" />';
 
 
 ?>
