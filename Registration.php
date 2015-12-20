@@ -27,8 +27,17 @@ if($result = mysqli_query($conn, $sql)){
 
 
 else{
-$sql="INSERT INTO `member`( `email`, `password`, `first_name` , `last_name`, `gender` , `birthdate` , `phone_number` , `hometown` , `about_me` , `marital_status` )
-VALUES ('$EmailAdress' ,  md5('$Password') ,  '$Firstname' , '$Lastname' , '$Gender' , '$Birthdate_Year-$Birthdate_Month-$Birthdate_Day', '$PhoneNumber' , '$Hometown' , '$AboutYou' , '$MaritalStatus' )";
+if($Gender=="Male"){
+  $target_file = "defualt/male.png";
+
+}else{
+
+     $target_file = "defualt/female.png";
+}
+
+  $image = addslashes(file_get_contents( $target_file));
+$sql="INSERT INTO `member`( `email`, `password`, `first_name` , `last_name`, `gender` , `birthdate` , `phone_number` , `hometown` , `about_me` , `marital_status` , `profile_pic`)
+VALUES ('$EmailAdress' ,  md5('$Password') ,  '$Firstname' , '$Lastname' , '$Gender' , '$Birthdate_Year-$Birthdate_Month-$Birthdate_Day', '$PhoneNumber' , '$Hometown' , '$AboutYou' , '$MaritalStatus' , '$image')";
 
 
 
