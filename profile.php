@@ -119,9 +119,9 @@ echo '</h1>';
 
      <input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
       <div class="checkbox">
-     <input type="radio" name="ispublic" value="true" checked>Public
+     <input type="radio" name="ispublic" value="true" checked><b> Public</b>
   <br>
-  <input type="radio" name="ispublic" value="false">Friends only
+  <input type="radio" name="ispublic" value="false"> <b> Friends only </b>
     </div>
   </form>
 </div>
