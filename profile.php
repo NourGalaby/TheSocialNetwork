@@ -1,12 +1,8 @@
 <?PHP
-session_start();
- $Firstname= $_SESSION["S_firstname"];
- $Lastname=$_SESSION["S_lastname"];
- $EmailAdress=$_SESSION["S_Email"];
- $mem_id=$_SESSION["S_user_id"];
 
 require('connect.php');
-$member =$mem_id;
+
+$member = 1;
 
 ?>
 
@@ -101,17 +97,26 @@ $query=mysqli_query($conn,"SELECT member.first_name,member.Last_name,member.prof
 
 WHILE ($rows = mysqli_fetch_array($query)){
 
-echo ' <h1 class = "media-heading"> ';
+$mime = "image/jpeg";
+      $b64Src = "data:".$mime.";base64," . base64_encode($rows["profile_pic"]);
+      echo "<center>"; 
+      echo '<img src="'.$b64Src.'" alt="" class="img-circle" width="150" height="150"/>';
+     echo ' <h2 > ';
 echo $rows['first_name'];
 echo " " ;
 echo $rows['Last_name'];
-echo '</h1>';
+echo '</h2>';
+           echo "</center>"; 
+
 
 }
 ?>
 </div>
 </div>
     <!-- End OF HELLOOO -->
+    <hr>
+
+
  <!-- POSSTTTTT -->
 <div class="container">
 <form role="form" action="Post_enter.php" id="form" method="post">
@@ -124,17 +129,15 @@ echo '</h1>';
 
      <input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
       <div class="checkbox">
-     <input type="radio" name="ispublic" value="true" checked>Public
+     <input type="radio" name="ispublic" value="true" checked><b> Public</b>
   <br>
-  <input type="radio" name="ispublic" value="false">Friends only
+  <input type="radio" name="ispublic" value="false"> <b> Friends only </b>
     </div>
   </form>
 </div>
+<!-- End OF POSSTTTTT -->
+<hr>
 
-    <!-- End OF POSSTTTTT -->
-
-<br>
-<br>
 
 <div class="container">
 <div class="panel panel-default">
