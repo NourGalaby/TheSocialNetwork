@@ -4,12 +4,16 @@ require('connect.php');
 
 <?php 
 session_start();
- $Firstname= $_SESSION["S_firstname"];
- $Lastname=$_SESSION["S_lastname"];
+ if(!isset($_SESSION["S_user_id"]))
+ {
+ echo ' <meta http-equiv="refresh" content="1;url=SignUp.html" />';
+ }
+ else {
+
  $EmailAdress=$_SESSION["S_Email"];
  $mem_id=$_SESSION["S_user_id"];
 
-$id = $mem_id;
+$id = $mem_id;}
 
 //print each post
 $sql = "SELECT p.post_id,l.first_name,l.last_name,p.post_date,p.is_public,p.caption
@@ -25,8 +29,8 @@ WHERE m.member_id=$id;
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
 //echo " HERE !!!!!!!!!!!!!!";
 WHILE ($rows = mysqli_fetch_array($query)){
-	//var_dump($rows);
-//	echo $rows['post_id']."<br>";
+  //var_dump($rows);
+//  echo $rows['post_id']."<br>";
 //echo $rows['first_name'];
 //echo ' ';
 //echo $rows['last_name']."<br>";
@@ -81,7 +85,7 @@ body {
             </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <form action="signup.html" class="navbar-form navbar-right" method="post">
+       <form action="Session_Die.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
          <input type="submit" class="btn btn-danger"  value="Logout"  >
         </div>
@@ -118,9 +122,9 @@ body {
   <form role="form" action="Post_enter.php" id="form" method="post" enctype="multipart/form-data">
     <div class="form-group">
 
-      <textarea class="form-control" rows="5" name="caption" id="comment" placeholder="What's on your mind?"></textarea>
+      <textarea class="form-control" rows="5" name="caption" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
 
-       <button type="submit" class="btn btn-success btn-block">Post</button>
+       <button type="submit" class="btn btn-success btn-block" >Post</button>
 <input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
     </div>
 
@@ -132,18 +136,18 @@ body {
     </div>
 
   </form>
+  <hr>
+
 </div>
 
-
-    <!-- End OF POSSTTTTT -->
-<hr>
+<!-- End OF POSSTTTTT -->
 
 <!--FRIENDS WITH POSTS-->
 
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-body">  
-	<div class = "media">
+  <div class = "media">
    <!--<a class = "pull-left" href = "#">
       <img class = "media-object" src = "/bootstrap/images/64.jpg" alt = "Media Object">
    </a>
@@ -166,8 +170,8 @@ WHERE m.member_id=$id;
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
 
 WHILE ($rows = mysqli_fetch_assoc($query)){
-	
-	//profile pic
+  
+  //profile pic
 $mime = "image/jpeg";
 echo "<a class = \"pull-left\" href = \"#\">\n";
       $b64Src = "data:".$mime.";base64," . base64_encode($rows["profile_pic"]);

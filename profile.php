@@ -1,12 +1,28 @@
 <?PHP
+session_start();
+ 
+ if(!isset($_SESSION["S_user_id"]))
+ {
+ echo ' <meta http-equiv="refresh" content="1;url=SignUp.html" />';
+ }
+ else {
+
+ $EmailAdress=$_SESSION["S_Email"];
+ $mem_id=$_SESSION["S_user_id"];
+}
 
 require('connect.php');
 
-$member = 1;
+if(isset($_GET['ID']) )
+$member = $_GET["ID"];
+
+else
+$member=$mem_id;
 
 ?>
 
 <!--STYLING-->
+
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +67,7 @@ body {
             </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <form action="signup.html" class="navbar-form navbar-right" method="post">
+       <form action="Session_Die.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
          <input type="submit" class="btn btn-danger"  value="Logout"  >
         </div>
@@ -112,18 +128,18 @@ echo '</h2>';
 }
 ?>
 </div>
-</div>
-    <!-- End OF HELLOOO -->
     <hr>
 
+</div>
+    <!-- End OF HELLOOO -->
 
  <!-- POSSTTTTT -->
 <div class="container">
 <form role="form" action="Post_enter.php" id="form" method="post">
     <div class="form-group">
 
-      <textarea class="form-control" rows="4" id="comment"></textarea>
- <button type="submit" class="btn btn-success btn-block">Post</button>
+      <textarea class="form-control" rows="4" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
+ <button type="submit" class="btn btn-success btn-block" >Post</button>
 
     </div>
 
@@ -134,15 +150,16 @@ echo '</h2>';
   <input type="radio" name="ispublic" value="false"> <b> Friends only </b>
     </div>
   </form>
+  <hr>
+
 </div>
 <!-- End OF POSSTTTTT -->
-<hr>
 
 
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-body"> 
-	<div class = "media">
+  <div class = "media">
 
        <?php
 
@@ -179,6 +196,7 @@ echo "</small>";
 echo '</h4>';
 echo ' ';
 echo $rows['caption']."<br>";
+echo "<br>";
 }
 
 ?>
