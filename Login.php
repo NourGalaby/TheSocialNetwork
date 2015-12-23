@@ -3,18 +3,7 @@
 $Email = $_POST['email'];
 $Password = $_POST['pw'];
 
-
-$servername = "localhost";
-$db_username = "root";
-$db_password = "";
-$db_name="facebook";
-
-
-$conn = new mysqli($servername, $db_username, $db_password,$db_name);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: <br/> " . $conn->connect_error);
-}
+include("connect.php");
 
 
 $sql = "SELECT * FROM member WHERE email='$Email'";
@@ -45,7 +34,7 @@ if($enc_password==md5($Password)){
  $Member_ID=$row["member_id"];
  
  session_start(); 
- $_SESSION["S_email"]=$Email;
+ $_SESSION["S_Email"]=$Email;
  $_SESSION["S_user_id"]=$Member_ID;
 
 
@@ -55,7 +44,9 @@ if($enc_password==md5($Password)){
 
 }
 else{
-	echo("Incorrect Email or Password");
+	 
+   echo ' <meta http-equiv="refresh" content="1;url=SignUp.html?1" />';
+
 
 }
 
