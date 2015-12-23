@@ -7,7 +7,7 @@ $db_username = "root";
 $db_password = "";
 $db_name="facebook";
 
-$Searchfor='a';
+$Searchfor= $_POST["search"];
 
 
 $conn = new mysqli($servername, $db_username, $db_password,$db_name);
@@ -148,7 +148,7 @@ body {
             </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <form action="signup.html" class="navbar-form navbar-right" method="post">
+       <form action="Session_Die.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
          <input type="submit" class="btn btn-danger"  value="Logout"  >
         </div>
@@ -159,11 +159,11 @@ body {
         </div>
       </form>
 
-      <form class="navbar-form navbar-left" action="search.php">
+      <form class="navbar-form navbar-left" action="search.php" method="post">
            <div class = "col-lg-6">
             <div class = "input-group">
                 <div class="col-sm-1">
-               <input type = "text" class = "form-control" placeholder="What are you looking for?">
+               <input type = "text" class = "form-control" id="search" name= "search" placeholder="What are you looking for?">
               
                <span class = "input-group-btn">
                   <button class = "btn btn-default" type = "submit">
@@ -252,7 +252,8 @@ $result = mysqli_query($conn, $sel);
 
         echo ' <h4 class = "media-heading"> ';
 
-        echo "<a href=\"profile.php\"> ";
+        echo "<a href=\"profile.php\?ID=";
+        echo $memberid.'"'.">";
         echo ($firstname);
         echo " ";
         echo($lastname);
@@ -293,7 +294,8 @@ $result = mysqli_query($conn, $sel);
 
         echo ' <h4 class = "media-heading"> ';
 
-        echo "<a href=\"profile.php\"> ";
+        echo "<a href=\"profile.php\?ID=";
+        echo $memberid.'"'.">";
         echo ($firstname);
         echo " ";
         echo($lastname);
@@ -335,7 +337,8 @@ $result = mysqli_query($conn, $sel);
 
         echo ' <h4 class = "media-heading"> ';
 
-        echo "<a href=\"profile.php\"> ";
+        echo "<a href=\"profile.php\?ID=";
+        echo $memberid.'"'.">";
         echo ($firstname);
         echo " ";
         echo($lastname);
