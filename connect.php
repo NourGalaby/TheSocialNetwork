@@ -4,7 +4,7 @@
 $servername = "eu-cdbr-azure-west-d.cloudapp.net";
 $db_username = "bc42caf8599026";
 $db_password = "64fe1fdb";
-$db_name="facebook";
+$db_name="acsm_8d1adc48b63e3f4";
 // Create connection
 
 //echo " Connected to da ";
