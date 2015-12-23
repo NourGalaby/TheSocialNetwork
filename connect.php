@@ -1,9 +1,9 @@
 <?php 
 
 
-$servername = "localhost";
-$db_username = "root";
-$db_password = "";
+$servername = "eu-cdbr-azure-west-d.cloudapp.net";
+$db_username = "bc42caf8599026";
+$db_password = "64fe1fdb";
 $db_name="facebook";
 // Create connection
 
