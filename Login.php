@@ -4,18 +4,7 @@ $Email = $_POST['email'];
 $Password = $_POST['pw'];
 
 
-$servername = "localhost";
-$db_username = "root";
-$db_password = "";
-$db_name="facebook";
-
-
-$conn = new mysqli($servername, $db_username, $db_password,$db_name);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: <br/> " . $conn->connect_error);
-}
-
+include("connect.php");
 
 $sql = "SELECT * FROM member WHERE email='$Email'";
 
