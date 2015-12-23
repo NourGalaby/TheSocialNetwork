@@ -29,8 +29,8 @@ WHERE m.member_id=$id;
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
 //echo " HERE !!!!!!!!!!!!!!";
 WHILE ($rows = mysqli_fetch_array($query)){
-  //var_dump($rows);
-//  echo $rows['post_id']."<br>";
+	//var_dump($rows);
+//	echo $rows['post_id']."<br>";
 //echo $rows['first_name'];
 //echo ' ';
 //echo $rows['last_name']."<br>";
@@ -72,7 +72,7 @@ body {
 <body>
 
 <!--LOGIN HEADER-->
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -90,27 +90,47 @@ body {
          <input type="submit" class="btn btn-danger"  value="Logout"  >
         </div>
       </form>
+
 <form action="profile.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
          <input type="submit" class="btn btn-success"  value="View Your Profile"  >
         </div>
       </form>
-      <form class="navbar-form navbar-left" action="search.php">
+
+      <form class="navbar-form navbar-left" action="search.php" method="post">
            <div class = "col-lg-6">
             <div class = "input-group">
                 <div class="col-sm-1">
-               <input type = "text" class = "form-control" placeholder="What are you looking for?">
+               <input type = "text" class = "form-control" name = "search" id="search"placeholder="What are you looking for?">
               
                <span class = "input-group-btn">
-              
                   <button class = "btn btn-default" type = "submit">
                      Search
                   </button>
-                  </div>
                </span>
+                  </div>
+               
             </div>
          </div>
       </form>
+
+<p class="navbar-text navbar-right">
+      Logged in as: 
+<?php 
+$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name
+  FROM member WHERE member.member_id=$id") or die(mysql_error());
+
+WHILE ($rows = mysqli_fetch_array($query)){
+echo "<b>";
+echo $rows['first_name'];
+echo " " ;
+echo $rows['Last_name'];
+echo "</b>";
+}
+?>
+
+</p>
+
     </div>
   </div>
 
@@ -147,7 +167,7 @@ body {
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-body">  
-  <div class = "media">
+	<div class = "media">
    <!--<a class = "pull-left" href = "#">
       <img class = "media-object" src = "/bootstrap/images/64.jpg" alt = "Media Object">
    </a>
@@ -170,8 +190,8 @@ WHERE m.member_id=$id;
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
 
 WHILE ($rows = mysqli_fetch_assoc($query)){
-  
-  //profile pic
+	
+	//profile pic
 $mime = "image/jpeg";
 echo "<a class = \"pull-left\" href = \"#\">\n";
       $b64Src = "data:".$mime.";base64," . base64_encode($rows["profile_pic"]);

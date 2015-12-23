@@ -29,7 +29,7 @@ echo $caption;
 
 
 
-	//upload file , else no file. 
+  //upload file , else no file. 
 
 
 // Allow certain file formats
@@ -42,7 +42,7 @@ echo "data type erroeeeer:  ". $myFileType ." <br>";
 
 if($uploadOk==1){
 
-	   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
        
     } else {
@@ -57,8 +57,8 @@ if($uploadOk==1){
 
 }else {
 
-	//no file uploaded
-	echo "<br>"."  f=:".$f."<br>";
+  //no file uploaded
+  echo "<br>"."  f=:".$f."<br>";
 }
 //upload done OR no file
 
@@ -84,7 +84,7 @@ if($query=mysqli_query($conn,$sql))
 
 
  }else{
- 	 echo"error <br/>" .$sql. "<br>" .mysqli_error($conn);
+   echo"error <br/>" .$sql. "<br>" .mysqli_error($conn);
  }
 
 echo "<br>  <br> You will be redirirected to the main page in 1 secounds  <br> ";

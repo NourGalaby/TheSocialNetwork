@@ -73,11 +73,11 @@ body {
         </div>
       </form>
 
-      <form class="navbar-form navbar-left" action="search.php">
+      <form class="navbar-form navbar-left" id="form" action="search.php" method="post">
            <div class = "col-lg-6">
             <div class = "input-group">
                 <div class="col-sm-1">
-               <input type = "text" class = "form-control" placeholder="What are you looking for?">
+               <input type = "text" class = "form-control" id = "search" name = "search" placeholder="What are you looking for?">
               
                <span class = "input-group-btn">
               
@@ -108,7 +108,7 @@ body {
 <div class="jumbotron">
 <?php 
 
-$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name,member.profile_pic
+$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name,member.profile_pic,member.about_me,member.hometown
   FROM member WHERE member.member_id=$member ") or die(mysql_error());
 
 WHILE ($rows = mysqli_fetch_array($query)){
@@ -122,6 +122,14 @@ echo $rows['first_name'];
 echo " " ;
 echo $rows['Last_name'];
 echo '</h2>';
+     echo ' <h5> ';
+     echo "About: ";
+     echo $rows['about_me'];
+     echo "<br>";
+     echo "Hometown: ";
+     echo $rows['hometown'];
+echo '</h5>';
+
            echo "</center>"; 
 
 
@@ -135,10 +143,10 @@ echo '</h2>';
 
  <!-- POSSTTTTT -->
 <div class="container">
-<form role="form" action="Post_enter.php" id="form" method="post">
+<form role="form" action="Post_enter.php" id="form" method="post" enctype="multipart/form-data">
     <div class="form-group">
 
-      <textarea class="form-control" rows="4" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
+      <textarea class="form-control" rows="5" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
  <button type="submit" class="btn btn-success btn-block" >Post</button>
 
     </div>
@@ -159,7 +167,7 @@ echo '</h2>';
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-body"> 
-  <div class = "media">
+	<div class = "media">
 
        <?php
 
@@ -168,16 +176,9 @@ echo '</h2>';
         $result = mysqli_query($conn, $sel);
         $row= mysqli_fetch_assoc($result);
         $image=$row["profile_pic"];
-      
-
-       $mime = "image/jpeg";
-echo "<a class = \"pull-left\" href = \"#\">\n";
-      $b64Src = "data:".$mime.";base64," . base64_encode($row["profile_pic"]);
-      echo '<img src="'.$b64Src.'" alt="" class="img-circle" width="50" height="50"/>';
-     echo "   </a>\n";
+    
 
      ?>
-   <div class = "media-body">
 
 <?php 
 
@@ -185,6 +186,16 @@ $query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.
   FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member ") or die(mysql_error());
 
 WHILE ($rows = mysqli_fetch_array($query)){
+  $mime = "image/jpeg";
+echo "<a class = \"pull-left\" href = \"#\">\n";
+      $b64Src = "data:".$mime.";base64," . base64_encode($row["profile_pic"]);
+      echo '<img src="'.$b64Src.'" alt="" class="img-circle" width="50" height="50"/>';
+     echo "   </a>\n";
+     //end of profile pic
+echo '   ';
+
+        echo "   <div class = \"media-body\">\n"; 
+
 echo ' <h4 class = "media-heading"> ';
 echo $rows['first_name'];
 echo " " ;
@@ -197,6 +208,8 @@ echo '</h4>';
 echo ' ';
 echo $rows['caption']."<br>";
 echo "<br>";
+        echo "</div>\n";
+
 }
 
 ?>
