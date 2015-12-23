@@ -33,7 +33,7 @@ echo $caption;
 
 
 // Allow certain file formats
-if($myFileType != "jpg" && $myFileType != "png") {
+if($myFileType != "jpg" && $myFileType != "png" && $myFileType!= "JPG"  && $myFileType != "PNG") {
 echo "data type erroeeeer:  ". $myFileType ." <br>";
 
     $uploadOk = 0;
