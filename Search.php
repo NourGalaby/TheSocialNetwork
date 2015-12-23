@@ -7,6 +7,12 @@ include("connect.php");
 $Searchfor= $_POST["search"];
 
 
+$conn = new mysqli($servername, $db_username, $db_password,$db_name);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: <br/> " . $conn->connect_error);
+}
+?>
 
 <?php
 /*
