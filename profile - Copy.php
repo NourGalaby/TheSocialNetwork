@@ -21,7 +21,6 @@ $member=$mem_id;
 
 
 
-
 //echo for jquery
 echo "<script>";
 echo "var mem_id='{$mem_id}';";
@@ -33,9 +32,8 @@ echo "var member='{$member}';";
 echo "</script>";
 ?>
 
-
-
 <!--STYLING-->
+
 
  <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +74,7 @@ body {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-          <a class="navbar-brand" href="homepage.php"> <img src="logo.png" alt="Brand"></a>
+          <a class="navbar-brand" href="../homepage.php"> <img src="logo.png" alt="Brand"></a>
             </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -103,7 +101,7 @@ body {
          </div>
       </form>
 
-      <form class="navbar-form navbar-right" action="editprofile.php">
+      <form class="navbar-form navbar-right" action="edit.php">
         <button class = "btn btn-warning" type = "submit">
                      Edit Profile
                   </button>
@@ -134,6 +132,8 @@ $mime = "image/jpeg";
 echo $rows['first_name'];
 echo " " ;
 echo $rows['Last_name'];
+
+
 echo '</h2>';
      echo ' <h5> ';
      echo "About: ";
@@ -157,12 +157,13 @@ echo '</h5>';
 
 <!--ADDDDDDDDDDDDDDDDDDDDDDDDDDDDD FRIENDD-->
 
-<form action='' method='POST'>
-    <center> <button type="submit" class="btn btn-danger" id="addfriend" name="addfriend" text = "Add Freind" >
+<form method='POST'>
+    <center> <button type="submit" class="btn btn-danger" id="addfriend" name="addfriend" text = "Add Freind"  >
 <span class="glyphicon glyphicon-user"></span> 
 </button>
 </center>
  </form>
+
 
 <!--ENNNDDD ADD FRIENDD-->
 
@@ -201,11 +202,11 @@ echo '</h5>';
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-body"> 
-	<div class = "media">
+  <div class = "media">
 
        <?php
 
-      
+     
         $sel = "SELECT profile_pic FROM member WHERE member_id='$member'"; 
         $result = mysqli_query($conn, $sel);
         $row= mysqli_fetch_assoc($result);
@@ -240,21 +241,10 @@ echo $rows['post_date']."<br>";
 echo "</small>";
 echo '</h4>';
 echo ' ';
-echo $rows['caption'];
+echo $rows['caption']."<br>";
 echo "<br>";
-echo "<br>";
-
-//                                       LIKE BUTTON
-echo "<form action='' method='POST'>\n"; 
-echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name=\"like\" >\n"; 
-echo "<span class=\"glyphicon glyphicon-heart\"></span> Like\n"; 
-echo "</button>\n"; 
-echo " </form>\n";
-
-
-//                                       END OF LIKE BUTTON
         echo "</div>\n";
-echo "<hr>";
+
 }
 
 ?>
