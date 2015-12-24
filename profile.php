@@ -73,11 +73,11 @@ body {
         </div>
       </form>
 
-      <form class="navbar-form navbar-left" id="form" action="search.php" method="post">
+      <form class="navbar-form navbar-left" method="post" action="search.php">
            <div class = "col-lg-6">
             <div class = "input-group">
                 <div class="col-sm-1">
-               <input type = "text" class = "form-control" id = "search" name = "search" placeholder="What are you looking for?">
+               <input type = "text" class = "form-control" id = "search"name = "search"placeholder="What are you looking for?">
               
                <span class = "input-group-btn">
               
@@ -108,7 +108,7 @@ body {
 <div class="jumbotron">
 <?php 
 
-$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name,member.profile_pic,member.about_me,member.hometown
+$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name,member.profile_pic,member.about_me,member.hometown,member.marital_status
   FROM member WHERE member.member_id=$member ") or die(mysql_error());
 
 WHILE ($rows = mysqli_fetch_array($query)){
@@ -126,8 +126,14 @@ echo '</h2>';
      echo "About: ";
      echo $rows['about_me'];
      echo "<br>";
+     echo "<br>";
      echo "Hometown: ";
      echo $rows['hometown'];
+
+     echo "<br>";
+     echo "<br>";
+echo "Status: ";
+     echo $rows['marital_status'];
 echo '</h5>';
 
            echo "</center>"; 
@@ -135,18 +141,34 @@ echo '</h5>';
 
 }
 ?>
+
+<!--ADDDDDDDDDDDDDDDDDDDDDDDDDDDDD FRIENDD-->
+
+<form action='addfriend.php' method='POST'>
+    <center> <button type="submit" class="btn btn-danger" id="addfriend" name="addfriend" value = "Add Freind"  >
+<span class="glyphicon glyphicon-user"></span> 
+</button>
+</center>
+ </form>
+
+
+<!--ENNNDDD ADD FRIENDD-->
+
+
 </div>
     <hr>
 
 </div>
     <!-- End OF HELLOOO -->
 
+
+
  <!-- POSSTTTTT -->
 <div class="container">
-<form role="form" action="Post_enter.php" id="form" method="post" enctype="multipart/form-data">
+<form role="form" action="Post_enter.php" id="form" method="post">
     <div class="form-group">
 
-      <textarea class="form-control" rows="5" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
+      <textarea class="form-control" rows="4" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
  <button type="submit" class="btn btn-success btn-block" >Post</button>
 
     </div>
@@ -167,7 +189,7 @@ echo '</h5>';
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-body"> 
-	<div class = "media">
+  <div class = "media">
 
        <?php
 

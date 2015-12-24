@@ -1,5 +1,5 @@
 <?php
-session_destroy();
+
 
 $Firstname = $_POST['fname'];
 $Lastname = $_POST['lname'];
