@@ -41,7 +41,8 @@ echo "</script>";
 <html lang="en">
 <head>
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
-  <script src="addajax.js"> </script>
+  <script src="ajax.js"> </script>
+  <script src="script.js"> </script>
   <title>Profile</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -177,7 +178,7 @@ echo '</h5>';
 
  <!-- POSSTTTTT -->
 <div class="container">
-<form role="form" action="Post_enter.php" id="form" method="post">
+<form role="form" action="Post_enter.php" id="form" method="post" enctype="multipart/form-data" >
     <div class="form-group">
 
       <textarea class="form-control" rows="4" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
@@ -201,7 +202,7 @@ echo '</h5>';
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-body"> 
-	<div class = "media">
+  <div class = "media">
 
        <?php
 
@@ -243,12 +244,12 @@ echo ' ';
 echo $rows['caption'];
 echo "<br>";
 echo "<br>";
-
+$postid =$rows['post_id'];
 //                                       LIKE BUTTON
-echo "<form action='' method='POST'>\n"; 
-echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name=\"like\" >\n"; 
-echo "<span class=\"glyphicon glyphicon-heart\"></span> Like\n"; 
-echo "</button>\n"; 
+echo "<form action='like.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name='post_id' value=$postid>\n";
+echo "<span class=\"glyphicon glyphicon-heart\"></span> Like\n";
+echo "</button>\n";
 echo " </form>\n";
 
 
