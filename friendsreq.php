@@ -22,7 +22,7 @@ if ($conn->connect_error) {
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
   <script src="ajax.js"> </script>
   <script src="script.js"> </script>
-  <title>Friend requests</title>
+  <title>Friend request</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -46,12 +46,50 @@ body {
 
 <body>
 
+<!--NAVBAR-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">              
+                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+          <a class="navbar-brand" href="homepage.php"> <img src="logo.png" alt="Brand"></a>
+            </div>
 
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <form action="Session_Die.php" class="navbar-form navbar-right" method="post">
+        <div class="form-group">
+         <input type="submit" class="btn btn-danger"  value="Logout"  >
+        </div>
+      </form>
+<form action="profile.php" class="navbar-form navbar-right" method="post">
+        <div class="form-group">
+         <input type="submit" class="btn btn-success"  value="View Your Profile"  >
+        </div>
+      </form>
 
-  <!-- NAVBAR -->
-<?php
-include('navbar.php');
-  ?>
+      <form class="navbar-form navbar-left" action="search.php" method="post">
+           <div class = "col-lg-6">
+            <div class = "input-group">
+                <div class="col-sm-1">
+               <input type = "text" class = "form-control" id="search" name= "search" placeholder="What are you looking for?">
+              
+               <span class = "input-group-btn">
+                  <button class = "btn btn-default" type = "submit">
+                     Search
+                  </button>
+                  </div>
+               </span>
+            </div>
+         </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
 
 <div class="container">
 
@@ -62,7 +100,7 @@ include('navbar.php');
 
 <?php
 
-$friend ="Select * From member m JOIN friend_req f on f.req_mem_id = m.member_id where f.member_id='$mem_id'" ;
+$friend ="Select m.first_name,m.last_name,m.member_id,m.profile_pic,m.about_me,f.req_mem_id From member m JOIN friend_req f on f.req_mem_id = m.member_id where f.member_id='$mem_id'" ;
 $result = mysqli_query($conn, $friend);
 
     // output data of each row
@@ -96,15 +134,29 @@ $result = mysqli_query($conn, $friend);
         echo ($about);	
         echo "</div>\n";
         echo "<br>";
-      
+		
+$req_mem_id =$row['req_mem_id'];
+echo "<form action='acceptedreq.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-info\" id=\"Confirm\" name='req_mem_id' value=$req_mem_id>\n";
+echo "<span class=\"glyphicon\"></span> Confirm\n";
+echo "</button>\n";
+echo " </form>\n";
+	  
+	  
         echo "<br>";
+		
+	
+echo "<form action='deletereq.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-danger\" id=\"Delete request\" name='req_mem_id' value=$req_mem_id>\n";
+echo "<span class=\"glyphicon\"></span> Delete request\n";
+echo "</button>\n";
+echo " </form>\n";	
+		
+		
     }
 
 ?>
-    
-
-
-
+ 
       </div>
       </div>
     </div>
