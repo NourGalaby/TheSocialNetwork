@@ -22,7 +22,7 @@ if ($conn->connect_error) {
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
   <script src="ajax.js"> </script>
   <script src="script.js"> </script>
-  <title>Friend request</title>
+  <title>Friend requests</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -46,54 +46,16 @@ body {
 
 <body>
 
-<!--NAVBAR-->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">              
-                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-          <a class="navbar-brand" href="homepage.php"> <img src="logo.png" alt="Brand"></a>
-            </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <form action="Session_Die.php" class="navbar-form navbar-right" method="post">
-        <div class="form-group">
-         <input type="submit" class="btn btn-danger"  value="Logout"  >
-        </div>
-      </form>
-<form action="profile.php" class="navbar-form navbar-right" method="post">
-        <div class="form-group">
-         <input type="submit" class="btn btn-success"  value="View Your Profile"  >
-        </div>
-      </form>
 
-      <form class="navbar-form navbar-left" action="search.php" method="post">
-           <div class = "col-lg-6">
-            <div class = "input-group">
-                <div class="col-sm-1">
-               <input type = "text" class = "form-control" id="search" name= "search" placeholder="What are you looking for?">
-              
-               <span class = "input-group-btn">
-                  <button class = "btn btn-default" type = "submit">
-                     Search
-                  </button>
-                  </div>
-               </span>
-            </div>
-         </div>
-      </form>
-    </div>
-  </div>
-</nav>
-
+  <!-- NAVBAR -->
+<?php
+include('navbar.php');
+  ?>
 
 <div class="container">
 
-<h1>Friend request</h1>
+<h1>Friend requests</h1>
     <div class="panel">
       <div class="panel-body">
         <div class = "media">
