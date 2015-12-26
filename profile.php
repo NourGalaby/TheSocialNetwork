@@ -177,6 +177,12 @@ echo '</h5>';
 
 
  <!-- POSSTTTTT -->
+
+
+
+   <?php if ($member == $mem_id) : ?>
+      
+
 <div class="container">
 <form role="form" action="Post_enter.php" id="form" method="post" enctype="multipart/form-data" >
     <div class="form-group">
@@ -196,6 +202,11 @@ echo '</h5>';
   <hr>
 
 </div>
+
+    <?php endif; ?>
+
+
+
 <!-- End OF POSSTTTTT -->
 
 
