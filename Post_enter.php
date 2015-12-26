@@ -1,8 +1,10 @@
 <?php
-$member_id=1;
+session_start();
+$member_id=$_SESSION["S_user_id"];
 $target_file="";
 $uploadOk = 0;
 //test file
+
 $caption = $_POST["caption"];
 
 echo $_FILES["fileToUpload"]["name"];
