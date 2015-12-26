@@ -220,6 +220,7 @@ echo '</h5>';
 $query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.Last_name 
   FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member ") or die(mysql_error());
 
+
 WHILE ($rows = mysqli_fetch_array($query)){
   $mime = "image/jpeg";
 echo "<a class = \"pull-left\" href = \"#\">\n";
@@ -251,6 +252,20 @@ echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name='post_i
 echo "<span class=\"glyphicon glyphicon-heart\"></span> Like\n";
 echo "</button>\n";
 echo " </form>\n";
+
+
+$countlikes = "SELECT COUNT(post_like.member_id) as likes
+FROM post_like
+GROUP BY post_like.post_id
+HAVING post_like.post_id =$postid;";
+
+$countq=mysqli_query($conn,$countlikes) or die(mysql_error());
+WHILE ($rows2 = mysqli_fetch_array($countq)){
+ echo "Likes:";
+  echo $rows2['likes'];
+  echo "<br>";
+}
+
 
 
 //                                       END OF LIKE BUTTON
