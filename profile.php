@@ -110,6 +110,11 @@ body {
                   </button>
       </form>
 
+ <form class="navbar-form navbar-right" action="friends.php">
+        <button class = "btn btn-success" type = "submit">
+                     Friends
+                  </button>
+      </form>
     </div>
   </div>
 
