@@ -115,6 +115,13 @@ body {
                      Friends
                   </button>
       </form>
+	  
+	   <form class="navbar-form navbar-right" action="friendsreq.php">
+        <button class = "btn btn-success" type = "submit">
+                     friend request
+                  </button>
+      </form>
+	  
     </div>
   </div>
 
