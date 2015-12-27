@@ -90,7 +90,7 @@ if($query=mysqli_query($conn,$sql))
  }
 
 echo "<br>  <br> You will be redirirected to the main page in 1 secounds  <br> ";
-//echo ' <meta http-equiv="refresh" content="0;url=homepage.php" />';
+echo ' <meta http-equiv="refresh" content="0;url=homepage.php" />';
 ?> 
 
 <html>

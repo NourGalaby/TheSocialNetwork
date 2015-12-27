@@ -72,12 +72,13 @@ $query=mysqli_query($conn,"SELECT COUNT(friend_req.req_mem_id) as requests
 FROM friend_req
 GROUP BY friend_req.member_id
 HAVING friend_req.member_id ='$mem_id';") or die(mysql_error());
-
+$no = 0;
 WHILE ($rows = mysqli_fetch_array($query)){
+ $no = $rows['requests'];
 
-echo $rows['requests'];
 
 }
+echo $no;
 
  ?>
                   </button>
