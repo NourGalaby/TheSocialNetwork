@@ -10,6 +10,7 @@ function addfriend(){
       
     if(myID==hisID){
   alert("you cannot add yourself STUPID !");
+  return;
     }
 
 

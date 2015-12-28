@@ -100,7 +100,7 @@ body {
 
 <?php
 
-$friend ="Select m.first_name,m.last_name,m.member_id,m.profile_pic,m.about_me,f.req_mem_id From member m JOIN friend_req f on f.req_mem_id = m.member_id where f.member_id='$mem_id'" ;
+$friend ="Select m.first_name,m.last_name,m.member_id,m.profile_pic,m.about_me,f.req_mem_id From member m JOIN friend_req f on f.member_id = m.member_id where f.req_mem_id='$mem_id'" ;
 $result = mysqli_query($conn, $friend);
 
     // output data of each row
@@ -135,9 +135,10 @@ $result = mysqli_query($conn, $friend);
         echo "</div>\n";
         echo "<br>";
 		
-$req_mem_id =$row['req_mem_id'];
+$member_id =$memberid;
+
 echo "<form action='acceptedreq.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-info\" id=\"Confirm\" name='req_mem_id' value=$req_mem_id>\n";
+echo "<button type=\"submit\" class=\"btn btn-info\" id=\"Confirm\" name='member_id' value=$member_id>\n";
 echo "<span class=\"glyphicon\"></span> Confirm\n";
 echo "</button>\n";
 echo " </form>\n";
@@ -147,7 +148,7 @@ echo " </form>\n";
 		
 	
 echo "<form action='deletereq.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-danger\" id=\"Delete request\" name='req_mem_id' value=$req_mem_id>\n";
+echo "<button type=\"submit\" class=\"btn btn-danger\" id=\"Delete request\" name='member_id' value=$member_id>\n";
 echo "<span class=\"glyphicon\"></span> Delete request\n";
 echo "</button>\n";
 echo " </form>\n";	

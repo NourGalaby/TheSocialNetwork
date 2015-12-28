@@ -76,7 +76,12 @@ $addfriendbutton="This person added you";
 
 
 
-    if ($mem_id === $member){
+
+
+
+}}
+
+    if ($mem_id == $member){
       $disabled_button = "disabled";
 $addfriendbutton="You";
 
@@ -84,10 +89,6 @@ $addfriendbutton="You";
   $arefriends = true;
 
 }
-
-
-}}
-
 //echo for jquery
 echo "<script>";
 echo "var mem_id='{$mem_id}';";

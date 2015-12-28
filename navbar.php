@@ -13,6 +13,7 @@
                       <p class="navbar-text navbar-right">
       Logged in as: 
 <?php 
+
 $query=mysqli_query($conn,"SELECT member.first_name,member.Last_name
   FROM member WHERE member.member_id=$mem_id") or die(mysql_error());
 
@@ -61,7 +62,7 @@ echo "</b>";
 
  <?php if ($member != $mem_id) : ?>
 
- 
+
 <form action="profile.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
          <input type="submit" class="btn btn-success"  value="View Your Profile"  >
@@ -84,15 +85,15 @@ echo "</b>";
 
 $query=mysqli_query($conn,"SELECT COUNT(friend_req.req_mem_id) as requests
 FROM friend_req
-GROUP BY friend_req.member_id
-HAVING friend_req.member_id ='$mem_id';") or die(mysql_error());
+Where friend_req.req_mem_id ='$mem_id'
+GROUP BY friend_req.member_id;") or die(mysql_error());
 $no = 0;
 WHILE ($rows = mysqli_fetch_array($query)){
  $no = $rows['requests'];
 
 
 }
-echo $no;
+echo "Requests:".$no;
 
  ?>
                   </button>

@@ -4,7 +4,7 @@ session_start();
 
 include("connect.php");
 
-
+$member=0;
  $mem_id=$_SESSION["S_user_id"];
 
 $conn = new mysqli($servername, $db_username, $db_password,$db_name);
