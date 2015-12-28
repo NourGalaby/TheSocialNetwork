@@ -50,12 +50,25 @@ echo "</b>";
          </div>
       </form>
 
+ <?php if ($member == $mem_id) : ?>
       <form class="navbar-form navbar-right" action="editprofile.php">
         <button class = "btn btn-warning" type = "submit">
                      Edit Profile
                   </button>
       </form>
 
+<?php endif; ?>
+
+ <?php if ($member != $mem_id) : ?>
+
+ 
+<form action="profile.php" class="navbar-form navbar-right" method="post">
+        <div class="form-group">
+         <input type="submit" class="btn btn-success"  value="View Your Profile"  >
+        </div>
+      </form>
+
+<?php endif; ?>
  <form class="navbar-form navbar-right" action="friends.php">
         <button class = "btn btn-success" type = "submit">
                      Friends
@@ -64,9 +77,10 @@ echo "</b>";
 	  
 	   <form class="navbar-form navbar-right" action="friendsreq.php">
         <button class = "btn btn-success" type = "submit">
+
                      <?php 
 
-                    
+                
 
 $query=mysqli_query($conn,"SELECT COUNT(friend_req.req_mem_id) as requests
 FROM friend_req

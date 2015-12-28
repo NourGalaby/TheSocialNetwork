@@ -4,6 +4,7 @@ require('connect.php');
 
 <?php 
 session_start();
+$member =0; //must have for navbar
  if(!isset($_SESSION["S_user_id"]))
  {
  echo ' <meta http-equiv="refresh" content="1;url=SignUp.html" />';
@@ -78,7 +79,7 @@ include('navbar.php');
   ?>
 
 
-  
+
  <!-- POSSTTTTT -->
 <div class="container">
 
