@@ -98,13 +98,13 @@ include('navbar.php');
 $id = $mem_id;
 
 //print each post
-$sql = "SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image
+$sql = "SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image,post.post_id
 FROM member  
 INNER JOIN post  
 ON post.member_id= member.member_id
 WHERE post.is_public='true'
 UNION
-SELECT l.first_name,l.last_name,l.profile_pic,post.post_date,post.caption,post.image
+SELECT l.first_name,l.last_name,l.profile_pic,post.post_date,post.caption,post.image,post.post_id
 FROM member as m 
 INNER Join friend_list as  f 
 on m.member_id = f.member_id
@@ -114,47 +114,86 @@ Join member as l
 on post.member_id = l.member_id
 WHERE m.member_id=$id AND post.is_public='false'
 UNION
-SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image
+SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image,post.post_id
 FROM member 
 JOIN post
 ON post.member_id=member.member_id
 WHERE member.member_id=$id AND post.is_public='false' 
+ORDER BY `post_date` DESC
+
 ";
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
 
-WHILE ($rows = mysqli_fetch_assoc($query)){
-	
-	//profile pic
-$mime = "image/jpeg";
+WHILE ($rows = mysqli_fetch_array($query)){
+  $mime = "image/jpeg";
 echo "<a class = \"pull-left\" href = \"#\">\n";
       $b64Src = "data:".$mime.";base64," . base64_encode($rows["profile_pic"]);
       echo '<img src="'.$b64Src.'" alt="" class="img-circle" width="50" height="50"/>';
      echo "   </a>\n";
      //end of profile pic
+
 echo '   ';
 
         echo "   <div class = \"media-body\">\n"; 
 
-//name and post
-echo ' <h4 class = "media-heading"> ';
-//echo $rows['post_id']."<br>";
 
+
+
+echo ' <h4 class = "media-heading"> ';
 echo $rows['first_name'];
-echo ' ';
+echo " " ;
 echo $rows['last_name'];
 echo ' ';
 echo "<small>";
 echo $rows['post_date']."<br>";
 echo "</small>";
 echo '</h4>';
-
-echo $rows['caption']."<br>";
-//echo $rows['is_public']."<br>";
+echo ' ';
+echo $rows['caption'];
 echo "<br>";
-        echo "</div>\n";
+echo "<br>";
+$postid =$rows['post_id'];
 
+
+//image
+if(!is_null( $rows["image"])){
+  $mime = "image/jpeg";
+echo "<a class = \"pull-left\" href = \"#\">\n";
+      $b64Src = "data:".$mime.";base64," . base64_encode($rows["image"]);
+      echo '<img src="'.$b64Src.'" alt="" class="img-thumbnail" width="500" height="500"/>';
+     echo "   </a>\n";
+    
+
+echo '   ';
+
+}//end of image
+
+//                                       LIKE BUTTON
+echo "<form action='like.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name='post_id' value=$postid>\n";
+echo "<span class=\"glyphicon glyphicon-heart\"></span> Like\n";
+echo "</button>\n";
+echo " </form>\n";
+
+
+$countlikes = "SELECT COUNT(post_like.member_id) as likes
+FROM post_like
+GROUP BY post_like.post_id
+HAVING post_like.post_id =$postid;";
+
+$countq=mysqli_query($conn,$countlikes) or die(mysql_error());
+WHILE ($rows2 = mysqli_fetch_array($countq)){
+ echo "Likes:";
+  echo $rows2['likes'];
+  echo "<br>";
 }
 
+
+
+//                                       END OF LIKE BUTTON
+        echo "</div>\n";
+echo "<hr>";
+}
 ?>
 
 </div>
