@@ -21,6 +21,72 @@ $member=$mem_id;
 
 
 
+//check friends S
+ $arefriends = false;
+
+$friendquery="Select * From member m JOIN friend_list f on f.friend_id = m.member_id where f.member_id='$mem_id' and f.friend_id='$member'";
+$addquery="SELECT `member_id` FROM `friend_req` WHERE member_id ='$mem_id'  and req_mem_id = '$member';";
+$HEaddquery="SELECT `member_id` FROM `friend_req` WHERE member_id ='$member'  and req_mem_id = '$mem_id';";
+
+$R=mysqli_query($conn,$friendquery);
+
+
+if($result = mysqli_query($conn, $friendquery)){
+
+    if(mysqli_num_rows($result) > 0){
+
+//freinds
+
+  //echo " FRIENDS !!!";
+      $disabled_button = "disabled";
+$addfriendbutton="Friend ";
+  $arefriends=true;
+}else{
+//not friends
+
+
+  //  echo "NOT FRIENDS !!!";
+
+$disabled_button = "active";
+$addfriendbutton="Add Friend";
+
+//check if I added him
+if($result1 = mysqli_query($conn, $addquery)){
+
+    if(mysqli_num_rows($result1) > 0){
+   echo "here";
+$disabled_button = "disabled";
+$addfriendbutton="Pending";
+
+    }
+  }
+
+//check if he added me 
+if($result2 = mysqli_query($conn, $HEaddquery)){
+
+    if(mysqli_num_rows($result2) > 0){
+   
+$disabled_button = "disabled";
+$addfriendbutton="This person added you";
+
+
+    }
+  }
+
+
+
+
+    if ($mem_id === $member){
+      $disabled_button = "disabled";
+$addfriendbutton="You";
+
+//special case
+  $arefriends = true;
+
+}
+
+
+}}
 
 //echo for jquery
 echo "<script>";
@@ -42,8 +108,8 @@ echo "</script>";
 <head>
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
   <script src="ajax.js"> </script>
-  <script src="script.js"> </script>
-  <title>Profile</title>
+  <script src="addajax.js"> </script>
+  <title>Profile </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -114,12 +180,18 @@ echo '</h5>';
 
 <!--ADDDDDDDDDDDDDDDDDDDDDDDDDDDDD FRIENDD-->
 
+
+
+
 <form action='' method='POST'>
-    <center> <button type="submit" class="btn btn-danger" id="addfriend" name="addfriend" text = "Add Freind" >
-<span class="glyphicon glyphicon-user"></span> 
+    <center> <button type="submit" class="btn btn-danger <?php echo $disabled_button ?>" id="addfriend" name="addfriend" id = "Add Freind" > 
+      <span class="glyphicon glyphicon-user"></span> 
+      <?php echo $addfriendbutton  ?>
+
 </button>
 </center>
  </form>
+
 
 <!--ENNNDDD ADD FRIENDD-->
 
@@ -133,8 +205,7 @@ echo '</h5>';
 
 
  <!-- POSSTTTTT -->
-
-
+ <!-- IF NOT ME DONT SHOW NEW POST  -->
 
    <?php if ($member == $mem_id) : ?>
       
@@ -171,33 +242,37 @@ echo '</h5>';
   <div class="panel-body"> 
   <div class = "media">
 
-       <?php
 
-      
-        $sel = "SELECT profile_pic FROM member WHERE member_id='$member'"; 
-        $result = mysqli_query($conn, $sel);
-        $row= mysqli_fetch_assoc($result);
-        $image=$row["profile_pic"];
-    
-
-     ?>
 
 <?php 
 
-$query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.Last_name 
-  FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member ") or die(mysql_error());
 
+
+if($arefriends){
+  //freinds
+$query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.profile_pic ,member.Last_name 
+  FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member;") or die(mysql_error());
+}else {
+
+  // not freinds
+  $query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.profile_pic ,member.Last_name 
+  FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member and post.is_public='true';") or die(mysql_error());
+}
 
 WHILE ($rows = mysqli_fetch_array($query)){
   $mime = "image/jpeg";
 echo "<a class = \"pull-left\" href = \"#\">\n";
-      $b64Src = "data:".$mime.";base64," . base64_encode($row["profile_pic"]);
+      $b64Src = "data:".$mime.";base64," . base64_encode($rows["profile_pic"]);
       echo '<img src="'.$b64Src.'" alt="" class="img-circle" width="50" height="50"/>';
      echo "   </a>\n";
      //end of profile pic
+
 echo '   ';
 
         echo "   <div class = \"media-body\">\n"; 
+
+
+
 
 echo ' <h4 class = "media-heading"> ';
 echo $rows['first_name'];
@@ -213,6 +288,21 @@ echo $rows['caption'];
 echo "<br>";
 echo "<br>";
 $postid =$rows['post_id'];
+
+
+//image
+if(!is_null( $rows["image"])){
+  $mime = "image/jpeg";
+echo "<a class = \"pull-left\" href = \"#\">\n";
+      $b64Src = "data:".$mime.";base64," . base64_encode($rows["image"]);
+      echo '<img src="'.$b64Src.'" alt="" class="img-thumbnail" width="500" height="500"/>';
+     echo "   </a>\n";
+    
+
+echo '   ';
+
+}//end of image
+
 //                                       LIKE BUTTON
 echo "<form action='like.php' method='POST'>\n";
 echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name='post_id' value=$postid>\n";
