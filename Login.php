@@ -7,12 +7,6 @@ $Password = $_POST['pw'];
 include("connect.php");
 
 
-$conn = new mysqli($servername, $db_username, $db_password,$db_name);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: <br/> " . $conn->connect_error);
-}
-
 
 $sql = "SELECT * FROM member WHERE email='$Email'";
 
