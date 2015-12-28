@@ -16,37 +16,7 @@ $member =0; //must have for navbar
 
 $id = $mem_id;}
 
-//print each post
-$sql = "SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image,post.is_public
-FROM member  
-INNER JOIN post  
-ON post.member_id= member.member_id
-WHERE post.is_public='true'
 
-UNION
-
-SELECT l.first_name,l.last_name,l.profile_pic,post.post_date,post.caption,post.image,post.is_public
-FROM member as m 
-INNER Join friend_list as  f 
-on m.member_id = f.member_id
-JOIN post
-ON post.member_id = f.friend_id
-Join member as l
-on post.member_id = l.member_id
-WHERE m.member_id=$id AND post.is_public='false'";
-$query=mysqli_query($conn,$sql) or die(mysqli_error());
-//echo " HERE !!!!!!!!!!!!!!";
-WHILE ($rows = mysqli_fetch_array($query)){
-	//var_dump($rows);
-//	echo $rows['post_id']."<br>";
-//echo $rows['first_name'];
-//echo ' ';
-//echo $rows['last_name']."<br>";
-//echo $rows['post_date']."<br>";
-//echo $rows['caption']."<br>";
-//echo $rows['is_public']."<br>";
-//echo "<br>";
-}
 ?>
 
 
@@ -128,15 +98,27 @@ include('navbar.php');
 $id = $mem_id;
 
 //print each post
-$sql = "SELECT l.profile_pic,p.post_id,l.first_name,l.last_name,p.post_date,p.is_public,p.caption
+$sql = "SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image
+FROM member  
+INNER JOIN post  
+ON post.member_id= member.member_id
+WHERE post.is_public='true'
+UNION
+SELECT l.first_name,l.last_name,l.profile_pic,post.post_date,post.caption,post.image
 FROM member as m 
-Join friend_list as  f 
+INNER Join friend_list as  f 
 on m.member_id = f.member_id
-JOIN post as p
-ON p.member_id = f.friend_id
+JOIN post
+ON post.member_id = f.friend_id
 Join member as l
-on p.member_id = l.member_id
-WHERE m.member_id=$id;
+on post.member_id = l.member_id
+WHERE m.member_id=$id AND post.is_public='false'
+UNION
+SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image
+FROM member 
+JOIN post
+ON post.member_id=member.member_id
+WHERE member.member_id=$id AND post.is_public='false' 
 ";
 $query=mysqli_query($conn,$sql) or die(mysqli_error());
 
