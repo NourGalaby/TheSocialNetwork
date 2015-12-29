@@ -1,0 +1,24 @@
+CREATE TABLE NOTIFICATION_L
+(
+Liker_id int (2),
+Liked_id int (2),
+post_id int,
+    
+PRIMARY KEY(Liker_id ,Liked_id , post_id)
+);
+
+CREATE TABLE NOTIFICATION_ADD
+(
+Liker_id int (2),
+Liked_id int (2),
+    
+PRIMARY KEY(Liker_id ,Liked_id)
+);
+
+
+ALTER TABLE NOTIFICATION_L ADD FOREIGN KEY ( Liker_id ) REFERENCES MEMBER (member_id );
+ALTER TABLE NOTIFICATION_L ADD FOREIGN KEY ( Liked_id ) REFERENCES MEMBER (member_id );
+ALTER TABLE NOTIFICATION_L ADD FOREIGN KEY ( post_id ) REFERENCES post (post_id );
+
+ALTER TABLE NOTIFICATION_ADD ADD FOREIGN KEY ( Liker_id ) REFERENCES MEMBER (member_id );
+ALTER TABLE NOTIFICATION_ADD ADD FOREIGN KEY ( Liked_id ) REFERENCES MEMBER (member_id );

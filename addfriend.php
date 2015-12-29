@@ -14,6 +14,10 @@ $hisID = $_POST["hisID"];
 
 
 $sql= "INSERT INTO `friend_req`(`member_id`, `req_mem_id`, `req_date`) VALUES ('$myID','$hisID',CURRENT_TIMESTAMP)";
+$sql2= "INSERT INTO `notification_add`(`adder_id`, `added_id`) VALUES ('$myID','$hisID');";
+
+
+$query2=mysqli_query($conn,$sql2);
 
 if($query=mysqli_query($conn,$sql))
  {

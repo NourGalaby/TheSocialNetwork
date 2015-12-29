@@ -89,8 +89,7 @@ Where friend_req.req_mem_id ='$mem_id'
 GROUP BY friend_req.member_id;") or die(mysql_error());
 $no = 0;
 WHILE ($rows = mysqli_fetch_array($query)){
- $no = $rows['requests'];
-
+$no = $rows['requests'];
 
 }
 echo "Requests:".$no;
@@ -103,6 +102,5 @@ echo "Requests:".$no;
     </div>
 
   </div>
-
 </nav>
     <!-- EDN OF NAVBAR -->

@@ -251,7 +251,7 @@ echo '</h5>';
 
 if($arefriends){
   //freinds
-$query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.profile_pic ,member.Last_name 
+$query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.profile_pic ,member.Last_name
   FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member;") or die(mysql_error());
 }else {
 
@@ -274,6 +274,8 @@ echo '   ';
 
 
 
+	$postid =$rows['post_id'];	
+
 
 echo ' <h4 class = "media-heading"> ';
 echo $rows['first_name'];
@@ -288,7 +290,7 @@ echo ' ';
 echo $rows['caption'];
 echo "<br>";
 echo "<br>";
-$postid =$rows['post_id'];
+
 
 
 //image
@@ -304,12 +306,35 @@ echo '   ';
 
 }//end of image
 
-//                                       LIKE BUTTON
-echo "<form action='like.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name='post_id' value=$postid>\n";
+
+		//check like
+		$likeQ="SELECT `member_id`, `post_id`FROM `post_like` WHERE member_id='$mem_id' and post_id='$postid' ;";
+		if($result = mysqli_query($conn, $likeQ)){
+
+    if(mysqli_num_rows($result) > 0){
+		//liked
+		
+		//                                       LIKE BUTTON
+		echo "<form >\n";
+echo "<button  class=\"btn btn-danger disabled\" id=\"like\" name='post_id' value=$postid>\n";
+echo "<span class=\"glyphicon glyphicon-heart\"></span> Liked\n";
+echo "</button>\n";
+echo " </form>\n";
+		}else{
+			//no like
+			
+			
+			echo "<form action='like.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name='post_id' value=$postid  >\n";
+echo "<input id=\"a\" name=\"member_id\" value=$member hidden=\"true\">";
 echo "<span class=\"glyphicon glyphicon-heart\"></span> Like\n";
 echo "</button>\n";
 echo " </form>\n";
+		}	
+		}
+		
+//                                       LIKE BUTTON
+
 
 
 $countlikes = "SELECT COUNT(post_like.member_id) as likes
