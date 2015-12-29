@@ -9,10 +9,8 @@ if($query=mysqli_query($conn,"INSERT INTO post_like (`member_id`,`post_id`) VALU
 }
 	else{
 
-
 }
 
-
-echo "<br>  <br> You will be redirirected to the main page in 1 secounds  <br> ";
+echo "<br>  <br> You will be redirirected to the main page in 1 second  <br> ";
 echo ' <meta http-equiv="refresh" content="0;url=profile.php" />';
 ?>

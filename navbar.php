@@ -1,5 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+<style type="text/css">
+  body{
 
-<nav class="navbar navbar-default">
+    padding-top: 80px;
+  }
+
+</style>
+</head>
+</html>
+
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -9,8 +22,7 @@
                 <span class="icon-bar"></span>
             </button>
           <a class="navbar-brand" href="homepage.php"> <img src="logo.png" alt="Brand"></a>
-            </div>
-                      <p class="navbar-text navbar-right">
+                      <p class="navbar-text navbar-left">
       Logged in as: 
 <?php 
 
@@ -27,6 +39,8 @@ echo "</b>";
 ?>
 
 </p>
+</div>
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <form action="Session_Die.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
@@ -45,10 +59,10 @@ echo "</b>";
                   <button class = "btn btn-default" type = "submit">
                      Search
                   </button>
-                  </div>
                </span>
+                  </div>
             </div>
-         </div>
+            </div>
       </form>
 
  <?php if ($member == $mem_id) : ?>
@@ -93,7 +107,10 @@ WHILE ($rows = mysqli_fetch_array($query)){
 
 
 }
-echo "Requests:".$no;
+echo "Requests ";
+echo "<span class=\"badge\"> \n"; 
+echo $no;
+echo "</span></a>\n";
 
  ?>
                   </button>

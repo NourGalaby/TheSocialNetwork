@@ -250,7 +250,7 @@ $result = mysqli_query($conn, $sel);
 
         echo ' <h4 class = "media-heading"> ';
 
-        echo "<a href=\"profile.php\?ID=";
+        echo "<a href=\"profile.php?ID=";
         echo $memberid.'"'.">";
         echo ($firstname);
         echo " ";
