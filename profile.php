@@ -121,6 +121,7 @@ body {
  
   background-image: url("back.png");
   background-size: 100%;
+
  
 }
 @media (min-width: 768px) {
@@ -139,7 +140,8 @@ body {
 <?php
 include('navbar.php');
   ?>
-    <!-- HELLOOOOOO -->
+  
+  <!-- HELLOOOOOO -->
 
 <div class="container">
 <div class="jumbotron">
@@ -172,8 +174,7 @@ echo '</h2>';
 echo "Status: ";
      echo $rows['marital_status'];
 echo '</h5>';
-
-           echo "</center>"; 
+echo "</center>"; 
 
 
 }
@@ -210,17 +211,17 @@ echo '</h5>';
 
    <?php if ($member == $mem_id) : ?>
       
-
 <div class="container">
 <form role="form" action="Post_enter.php" id="form" method="post" enctype="multipart/form-data" >
     <div class="form-group">
 
       <textarea class="form-control" rows="4" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
- <button type="submit" class="btn btn-success btn-block" >Post</button>
-
     </div>
 
-     <input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
+ <button type="submit" class="btn btn-success btn-block" ><b>Post</b></button>
+<br><center>
+<input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
+      </center>
       <div class="checkbox">
      <input type="radio" name="ispublic" value="true" checked><b> Public</b>
   <br>
@@ -228,9 +229,7 @@ echo '</h5>';
     </div>
   </form>
   <hr>
-
 </div>
-
     <?php endif; ?>
 
 
@@ -251,13 +250,15 @@ echo '</h5>';
 
 if($arefriends){
   //freinds
-$query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.profile_pic ,member.Last_name
-  FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member;") or die(mysql_error());
+
+$query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.profile_pic ,member.Last_name 
+  FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member ORDER BY `post_date` DESC;") or die(mysql_error());
+
 }else {
 
   // not freinds
   $query=mysqli_query($conn,"SELECT post.post_id,post.post_date,post.caption,post.image,post.is_public,member.first_name,member.profile_pic ,member.Last_name 
-  FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member and post.is_public='true';") or die(mysql_error());
+  FROM member JOIN post ON post.member_id =member. member_id WHERE member.member_id=$member and post.is_public='true' ORDER BY `post_date` DESC;") or die(mysql_error());
 }
 
 WHILE ($rows = mysqli_fetch_array($query)){
@@ -270,11 +271,13 @@ echo "<a class = \"pull-left\" href = \"#\">\n";
 
 echo '   ';
 
+
         echo "   <div class = \"media-body\">\n"; 
 
 
 
 	$postid =$rows['post_id'];	
+
 
 
 echo ' <h4 class = "media-heading"> ';
@@ -292,19 +295,19 @@ echo "<br>";
 echo "<br>";
 
 
-
 //image
 if(!is_null( $rows["image"])){
   $mime = "image/jpeg";
-echo "<a class = \"pull-left\" href = \"#\">\n";
+echo "<a class = \"pull-center\" href = \"#\">\n";
       $b64Src = "data:".$mime.";base64," . base64_encode($rows["image"]);
-      echo '<img src="'.$b64Src.'" alt="" class="img-thumbnail" width="500" height="500"/>';
+      echo '<img src="'.$b64Src.'" alt="" class="img-thumbnail" width="300" height="300"/>';
      echo "   </a>\n";
-    
+          echo "<br>";
+     echo "<br>";
 
-echo '   ';
 
 }//end of image
+
 
 
 		//check like
@@ -337,6 +340,7 @@ echo " </form>\n";
 
 
 
+
 $countlikes = "SELECT COUNT(post_like.member_id) as likes
 FROM post_like
 GROUP BY post_like.post_id
@@ -344,21 +348,25 @@ HAVING post_like.post_id =$postid;";
 
 $countq=mysqli_query($conn,$countlikes) or die(mysql_error());
 WHILE ($rows2 = mysqli_fetch_array($countq)){
- echo "Likes:";
+  
+  echo "<span class=\"label label-danger\">\n"; 
+  echo "\n"; 
+  echo "Likes: ";
   echo $rows2['likes'];
+  echo "</span>\n";
   echo "<br>";
 }
+echo " </form>\n";
 
 
 
 //                                       END OF LIKE BUTTON
-        echo "</div>\n";
+echo "</div>\n";
 echo "<hr>";
 }
 
 ?>
 
-</div>
 </div>
 </div>
 </div>

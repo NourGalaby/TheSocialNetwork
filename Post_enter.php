@@ -3,8 +3,8 @@ session_start();
 $member_id=$_SESSION["S_user_id"];
 $target_file="";
 $uploadOk = 0;
-//test file
 
+//test file
 $caption = $_POST["caption"];
 
 echo $_FILES["fileToUpload"]["name"];
@@ -13,17 +13,16 @@ echo $_FILES["fileToUpload"]["name"];
 $ispublic = $_POST["ispublic"];
 
 $f = $_FILES["fileToUpload"]["name"];
+
 if(  strlen( $f )> 0  )   {
 
 echo $f;
-   $uploadOk = 1;
+$uploadOk = 1;
 $target_dir = "img/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
 //$target_file = $target_dir . $_POST["fileToUpload"];
 
 $myFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-
 
 echo "type".$myFileType;
 echo $caption;
@@ -58,7 +57,6 @@ if($uploadOk==1){
 
 
 }else {
-
   //no file uploaded
   echo "<br>"."  f=:".$f."<br>";
 }
@@ -84,7 +82,6 @@ $sql = "INSERT INTO `post`(`member_id`, `caption`, `image`, `is_public`) VALUES 
 if($query=mysqli_query($conn,$sql))
  {
 
-
  }else{
    echo"error <br/>" .$sql. "<br>" .mysqli_error($conn);
  }
@@ -92,13 +89,3 @@ if($query=mysqli_query($conn,$sql))
 echo "<br>  <br> You will be redirirected to the main page in 1 secounds  <br> ";
 echo ' <meta http-equiv="refresh" content="0;url=homepage.php" />';
 ?> 
-
-<html>
-<head>
-  <title>
-  </title>
-</head>
-<body>
-
-</body>
-</html>

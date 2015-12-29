@@ -251,7 +251,7 @@ echo "Results by Email"."<br>";
 
         echo ' <h4 class = "media-heading"> ';
 
-        echo "<a href=\"profile.php\?ID=";
+        echo "<a href=\"profile.php?ID=";
         echo $memberid.'"'.">";
         echo ($firstname);
         echo " ";

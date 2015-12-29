@@ -26,12 +26,10 @@ if($query=mysqli_query($conn,$Q2) > 0){
 	else{
 	
 
-
 }
 
 
+echo "<br>  <br> You will be redirirected to the main page in 1 second  <br> ";
+echo ' <meta http-equiv="refresh" content="0;url=profile.php" />';
 
-
-echo "<br>  <br> You will be redirirected to the main page in 1 secounds  <br> ";
-//echo ' <meta http-equiv="refresh" content="0;url=profile.php" />';
 ?>
