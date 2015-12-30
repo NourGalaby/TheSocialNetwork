@@ -358,7 +358,7 @@ $result = mysqli_query($conn, $sel);
 
         $about=$row["about_me"];
         $mime = "image/jpeg";
-       
+      
         echo "<a class = \"pull-left\" href = \"#\">\n";
         $b64Src = "data:".$mime.";base64," . base64_encode($row["profile_pic"]);
         echo '<img src="'.$b64Src.'" alt="" class="img-circle" width="50" height="50"/>';
@@ -398,27 +398,28 @@ $result = mysqli_query($conn, $sel);
 
 <?php
 
-$post=mysqli_query($conn,"SELECT post.caption , post.post_date, member.first_name,member.Last_name,member.profile_pic,member.member_id FROM post 
+$post=mysqli_query($conn,"SELECT * FROM post 
 JOIN member ON post.member_id = member.member_id
 WHERE  post.caption LIKE '%$Searchfor%' ");
 
 WHILE ($rows = mysqli_fetch_array($post)){
   $mime = "image/jpeg";
 echo "<a class = \"pull-left\" href = \"#\">\n";
-      $b64Src = "data:".$mime.";base64," . base64_encode($row["profile_pic"]);
+      $b64Src = "data:".$mime.";base64," . base64_encode($rows["profile_pic"]);
       echo '<img src="'.$b64Src.'" alt="" class="img-circle" width="50" height="50"/>';
      echo "   </a>\n";
      //end of profile pic
-	 $memberid=$rows['member_id'];
-	 
-echo '   ';
+
+	
+
         echo "   <div class = \"media-body\">\n"; 
 echo ' <h4 class = "media-heading"> ';
         echo "<a href=\"profile.php?ID=";
+           $memberid=$rows['member_id'];
         echo $memberid.'"'.">";
 echo $rows['first_name'];
 echo " " ;
-echo $rows['Last_name'];
+echo $rows['last_name'];
    echo"</a>\n";
 echo ' ';
 echo "<small>";
