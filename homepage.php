@@ -175,7 +175,7 @@ if(!is_null( $rows["image"])){
   $mime = "image/jpeg";
 echo "<a class = \"pull-center\" href = \"#\">\n";
       $b64Src = "data:".$mime.";base64," . base64_encode($rows["image"]);
-      echo '<img src="'.$b64Src.'" alt="" class="img-thumbnail" width="300" height="300"/>';
+      echo '<img src="'.$b64Src.'" alt="" class="img-thumbnail" width="500" height="500"/>';
      echo "   </a>\n";
      echo "<br>";
     echo "<br>";
