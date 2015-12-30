@@ -194,20 +194,21 @@ echo '   ';
     
     //                                       LIKE BUTTON
     echo "<form >\n";
-echo "<button  class=\"btn btn-sm btn-danger disabled\" id=\"like\" name='post_id' value=$postid>\n";
-echo "<span class=\"glyphicon glyphicon-ok\"></span> Liked\n";
-echo "</button>\n";
+    echo "<button  class=\"btn btn-sm btn-danger disabled\" id=\"like\" name='post_id' value=$postid>\n";
+    echo "<span class=\"glyphicon glyphicon-ok\"></span> Liked\n";
+    echo "</button>\n";
 
     }else{
       //no like
 
-  echo "<form action='like.php' method='POST'>\n";
-  echo "<button type=\"submit\" class=\"btn btn-sm btn-primary\" id=\"like\" name='post_id' value=$postid  >\n";
-  echo "<input id=\"a\" name=\"member_id\" value=$member hidden=\"true\">";
-  echo "<span class=\"glyphicon glyphicon-thumbs-up\"></span> Like\n";
-  echo "</button>\n";
+    echo "<form action='like.php' method='POST'>\n";
+    echo "<button type=\"submit\" class=\"btn btn-sm btn-primary\" id=\"like\" name='post_id' value=$postid  >\n";
+    echo "<input id=\"a\" name=\"member_id\" value=$member hidden=\"true\">";
+    echo "<span class=\"glyphicon glyphicon-thumbs-up\"></span> Like\n";
+    echo "</button>\n";
     } 
 }
+
 // Number of likes
 
 $countlikes = "SELECT COUNT(post_like.member_id) as likes

@@ -32,7 +32,7 @@ $whitelist = array(
 
 foreach($_POST as $key => $val) {
     if( ! empty($val)  && in_array($key, $whitelist)) {
-        $sql .= $comma . $key . " = '" . mysql_real_escape_string(trim($val)) . "'";
+        $sql .= $comma . $key . " = '" . mysqli_real_escape_string($conn,trim($val)) . "'";
         $comma = ", ";
     }
 }
@@ -140,11 +140,9 @@ $ispublic="true";
 
 $query=mysqli_query($conn,$sqlinsert);
 
-}else {
+} else {
 //do nothing
-}
-
-
+   }
 
 }
 // END OF PROFILE PICTURE ----------------------------------------------------------------------------

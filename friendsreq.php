@@ -89,7 +89,7 @@ echo "</b>";
 ?>
 
 </p>
-            </div>
+    </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <form action="Session_Die.php" class="navbar-form navbar-right" method="post">
