@@ -110,6 +110,9 @@ echo "</script>";
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
   <script src="ajax.js"> </script>
   <script src="addajax.js"> </script>
+   <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>  
+    <script src="emoji.js"> </script>
+
   <title>Profile </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -129,7 +132,11 @@ body {
         width:800px;
     }
 }
-
+img.emoji {  
+  // Override any img styles to ensure Emojis are displayed inline
+  margin: 0px !important;
+  display: inline !important;
+}
  
 </style>
 </head>

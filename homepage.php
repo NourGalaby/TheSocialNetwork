@@ -26,6 +26,8 @@ $id = $mem_id;}
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
   <script src="ajax.js"> </script>
   <script src="script.js"> </script>
+  <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>  
+  <script src="emoji.js"> </script>
   <title>Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +42,13 @@ body {
 
  
 }
+
+img.emoji {  
+  // Override any img styles to ensure Emojis are displayed inline
+  margin: 0px !important;
+  display: inline !important;
+}
+
 @media (min-width: 768px) {
     .container{
         width:800px;
