@@ -95,7 +95,7 @@ echo "</b>";
               
                <span class = "input-group-btn">
               
-                  <button class = "btn btn-default" type = "submit">
+                  <button class = "btn btn-info" type = "submit">
                      Search
                   </button>
                   </div>
@@ -105,7 +105,7 @@ echo "</b>";
       </form>
 
       <form class="navbar-form navbar-right" action="profile.php">
-        <button class = "btn btn-success" type = "submit">
+        <button class = "btn btn-info" type = "submit">
                      View Your Profile
                   </button>
       </form>
@@ -117,9 +117,9 @@ echo "</b>";
 
 <div class="container">
 
-<div class="panel panel-default panel-transparent">
+<div class="panel panel-info">
 <div class="panel-heading">
-    <h3 class="panel-title">Edit Your Profile</h3>
+    <h3 class="panel-title"><b>Edit Your Profile</b></h3>
   </div>
 <div class="panel-body">
 

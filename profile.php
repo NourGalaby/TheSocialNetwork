@@ -235,9 +235,9 @@ echo "</center>";
       <textarea class="form-control" rows="4" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
     </div>
 
- <button type="submit" class="btn btn-success btn-block" ><b>Post</b></button>
+ <button type="submit" class="btn btn-info btn-block" ><b>Post</b></button>
 <br><center>
-<input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
+<input type="file" class="btn btn-info" name="fileToUpload" id="fileToUpload">
       </center>
       <div class="checkbox">
      <input type="radio" name="ispublic" value="true" checked><b> Public</b>
@@ -255,7 +255,13 @@ echo "</center>";
 
 
 <div class="container">
-<div class="panel panel-default">
+<div class="panel panel-info">
+<div class="panel-heading">
+
+<h3 class="panel-title"><b>Your Posts</b></h3>
+
+</div>
+
   <div class="panel-body"> 
   <div class = "media">
 

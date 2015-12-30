@@ -76,9 +76,9 @@ include('navbar.php');
       <textarea class="form-control" rows="5" name="caption" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
     </div>
 
-       <button type="submit" class="btn btn-success btn-block" ><b>Post</b></button>
+       <button type="submit" class="btn btn-info btn-block" ><b>Post</b></button>
        <br><center>
-<input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
+<input type="file" class="btn btn-info" name="fileToUpload" id="fileToUpload">
 </center>
   
 <div class="checkbox">
@@ -97,7 +97,12 @@ include('navbar.php');
 <!--FRIENDS WITH POSTS-->
 
 <div class="container">
-<div class="panel panel-default">
+<div class="panel panel-info">
+<div class="panel-heading">
+    <h3 class="panel-title"><b>News Feed</b></h3>
+
+</div>
+
   <div class="panel-body">  
 	<div class = "media">
    <!--<a class = "pull-left" href = "#">
@@ -147,9 +152,6 @@ echo '   ';
 
         echo "   <div class = \"media-body\">\n"; 
 
-
-
-
 echo ' <h4 class = "media-heading"> ';
 echo $rows['first_name'];
 echo " " ;
@@ -182,11 +184,31 @@ echo '   ';
 
 //                                       LIKE BUTTON
 
-echo "<form action='like.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-sm btn-primary\" id=\"like\" name='post_id' value=$postid>\n";
-echo "<span class=\"glyphicon glyphicon-thumbs-up\"></span> Like\n";
+
+    //check like
+    $likeQ="SELECT `member_id`, `post_id`FROM `post_like` WHERE member_id='$mem_id' and post_id='$postid' ;";
+    if($result = mysqli_query($conn, $likeQ)){
+
+    if(mysqli_num_rows($result) > 0){
+    //liked
+    
+    //                                       LIKE BUTTON
+    echo "<form >\n";
+echo "<button  class=\"btn btn-sm btn-danger disabled\" id=\"like\" name='post_id' value=$postid>\n";
+echo "<span class=\"glyphicon glyphicon-ok\"></span> Liked\n";
 echo "</button>\n";
 
+    }else{
+      //no like
+
+  echo "<form action='like.php' method='POST'>\n";
+  echo "<button type=\"submit\" class=\"btn btn-sm btn-primary\" id=\"like\" name='post_id' value=$postid  >\n";
+  echo "<input id=\"a\" name=\"member_id\" value=$member hidden=\"true\">";
+  echo "<span class=\"glyphicon glyphicon-thumbs-up\"></span> Like\n";
+  echo "</button>\n";
+    } 
+}
+// Number of likes
 
 $countlikes = "SELECT COUNT(post_like.member_id) as likes
 FROM post_like

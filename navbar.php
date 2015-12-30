@@ -56,7 +56,7 @@ echo "</b>";
               
                <span class = "input-group-btn">
               
-                  <button class = "btn btn-default" type = "submit">
+                  <button class = "btn btn-info" type = "submit">
                      Search
                   </button>
                </span>
@@ -79,19 +79,19 @@ echo "</b>";
 
 <form action="profile.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
-         <input type="submit" class="btn btn-success"  value="View Your Profile"  >
+         <input type="submit" class="btn btn-info"  value="View Your Profile"  >
         </div>
       </form>
 
 <?php endif; ?>
  <form class="navbar-form navbar-right" action="friends.php">
-        <button class = "btn btn-success" type = "submit">
+        <button class = "btn btn-default" type = "submit">
                      Friends
                   </button>
       </form>
 	  
 	   <form class="navbar-form navbar-right" action="friendsreq.php">
-        <button class = "btn btn-success" type = "submit">
+        <button class = "btn btn-default" type = "submit">
 
                      <?php 
 

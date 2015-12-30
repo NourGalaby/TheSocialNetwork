@@ -14,6 +14,21 @@ if ($conn->connect_error) {
 }
 ?>
 
+<?php 
+$member =0; //must have for navbar
+ if(!isset($_SESSION["S_user_id"]))
+ {
+ echo ' <meta http-equiv="refresh" content="1;url=SignUp.html" />';
+ }
+ else {
+
+ $EmailAdress=$_SESSION["S_Email"];
+ $mem_id=$_SESSION["S_user_id"];
+
+$id = $mem_id;}
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -57,6 +72,23 @@ body {
                 <span class="icon-bar"></span>
             </button>
           <a class="navbar-brand" href="homepage.php"> <img src="logo.png" alt="Brand"></a>
+            <p class="navbar-text navbar-left">
+      Logged in as: 
+<?php 
+
+$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name
+  FROM member WHERE member.member_id=$mem_id") or die(mysql_error());
+
+WHILE ($rows = mysqli_fetch_array($query)){
+echo "<b>";
+echo $rows['first_name'];
+echo " " ;
+echo $rows['Last_name'];
+echo "</b>";
+}
+?>
+
+</p>
             </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -67,7 +99,7 @@ body {
       </form>
 <form action="profile.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
-         <input type="submit" class="btn btn-success"  value="View Your Profile"  >
+         <input type="submit" class="btn btn-info"  value="View Your Profile"  >
         </div>
       </form>
 
@@ -78,7 +110,7 @@ body {
                <input type = "text" class = "form-control" id="search" name= "search" placeholder="What are you looking for?">
               
                <span class = "input-group-btn">
-                  <button class = "btn btn-default" type = "submit">
+                  <button class = "btn btn-info" type = "submit">
                      Search
                   </button>
                   </div>
@@ -93,7 +125,7 @@ body {
 
 <div class="container">
 
-<h1>Friend requests</h1>
+<h1>Friend Requests..</h1>
     <div class="panel">
       <div class="panel-body">
         <div class = "media">
@@ -132,27 +164,25 @@ $result = mysqli_query($conn, $friend);
         echo '</h4>';
         echo ' ';
         echo ($about);	
-        echo "</div>\n";
+        echo "<br>";
         echo "<br>";
 		
 $member_id =$memberid;
 
-echo "<form action='acceptedreq.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-info\" id=\"Confirm\" name='member_id' value=$member_id>\n";
-echo "<span class=\"glyphicon\"></span> Confirm\n";
+echo "<form class=\"btn-group\" action='acceptedreq.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-sm btn-info\" id=\"Confirm\" name='member_id' value=$member_id>\n";
+echo "<span class=\"glyphicon glyphicon-ok\"></span> Confirm\n";
 echo "</button>\n";
 echo " </form>\n";
-	  
-	  
-        echo "<br>";
-		
 	
-echo "<form action='deletereq.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-danger\" id=\"Delete request\" name='member_id' value=$member_id>\n";
-echo "<span class=\"glyphicon\"></span> Delete request\n";
+echo "<form  class=\"btn-group\" action='deletereq.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-sm btn-danger\" id=\"Delete request\" name='member_id' value=$member_id>\n";
+echo "<span class=\"glyphicon glyphicon-remove\"></span> Delete\n";
 echo "</button>\n";
 echo " </form>\n";	
-		
+echo "</div>\n";
+echo "<hr>";
+
 		
     }
 

@@ -101,8 +101,8 @@ $result = mysqli_query($conn, $friend);
 
         echo "</div>\n";
         echo "<br>";
+        echo "<hr>";
         //echo($memberid);
-        echo "<br>";
     }
 
 
