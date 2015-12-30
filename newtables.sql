@@ -12,7 +12,7 @@ CREATE TABLE NOTIFICATION_ADD
 adder_id int (2),
 added_id int (2),
     
-PRIMARY KEY(Liker_id ,Liked_id)
+PRIMARY KEY(adder_id ,added_id)
 );
 
 
