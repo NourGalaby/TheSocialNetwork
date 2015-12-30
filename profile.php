@@ -147,7 +147,7 @@ include('navbar.php');
 <div class="jumbotron">
 <?php 
 
-$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name,member.profile_pic,member.about_me,member.hometown,member.marital_status
+$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name,member.profile_pic,member.about_me,member.hometown,member.marital_status,member.birthdate 
   FROM member WHERE member.member_id=$member ") or die(mysql_error());
 
 WHILE ($rows = mysqli_fetch_array($query)){
@@ -162,10 +162,20 @@ echo " " ;
 echo $rows['Last_name'];
 echo '</h2>';
      echo ' <h5> ';
-     echo "About: ";
+
+     if($arefriends){
+
+           echo "About: ";
      echo $rows['about_me'];
      echo "<br>";
      echo "<br>";
+         echo "Birthdate: ";
+     echo $rows['birthdate'];
+     echo "<br>";
+     echo "<br>";
+
+     }
+
      echo "Hometown: ";
      echo $rows['hometown'];
 

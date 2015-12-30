@@ -124,21 +124,31 @@ $image = addslashes(file_get_contents( $target_file));
 
 $sql3 = "UPDATE member SET profile_pic = '$image' WHERE member_id = '$id'";
 
-}else {
-//do nothing
-}
+
 
 if($query=mysqli_query($conn,$sql3))
  {
 echo "Editing profile_pic..... <br>";
-//echo ' <meta http-equiv="refresh" content="1;url=profile.php" />';
+//echo ' <meta http-equiv="refresh" content="0;url=profile.php" />';
  } else {
    echo"errorrrrrrrrrrrrrrrr <br/>" .$sql3. "<br>" .mysqli_error($conn);
  }
 
+$caption="Profile Picture Updated";
+$ispublic="true";
+ $sqlinsert = "INSERT INTO `post`(`member_id`, `caption`, `image`, `is_public`) VALUES ('$id','$caption','{$image}','$ispublic')";
+
+$query=mysqli_query($conn,$sqlinsert);
+
+}else {
+//do nothing
+}
+
+
+
 }
 // END OF PROFILE PICTURE ----------------------------------------------------------------------------
 
-echo ' <meta http-equiv="refresh" content="1;url=profile.php"/>';
+echo ' <meta http-equiv="refresh" content="0;url=profile.php"/>';
 
 ?>
