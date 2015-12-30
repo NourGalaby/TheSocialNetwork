@@ -78,9 +78,9 @@ include('append_notification.php');
       <textarea class="form-control" rows="5" name="caption" id="caption" name="caption" placeholder="What's on your mind?"></textarea>
     </div>
 
-       <button type="submit" class="btn btn-success btn-block" ><b>Post</b></button>
+       <button type="submit" class="btn btn-info btn-block" ><b>Post</b></button>
        <br><center>
-<input type="file" class="btn btn-success" name="fileToUpload" id="fileToUpload">
+<input type="file" class="btn btn-info" name="fileToUpload" id="fileToUpload">
 </center>
   
 <div class="checkbox">
@@ -99,7 +99,12 @@ include('append_notification.php');
 <!--FRIENDS WITH POSTS-->
 
 <div class="container">
-<div class="panel panel-default">
+<div class="panel panel-info">
+<div class="panel-heading">
+    <h3 class="panel-title"><b>News Feed</b></h3>
+
+</div>
+
   <div class="panel-body">  
 	<div class = "media">
    <!--<a class = "pull-left" href = "#">
@@ -149,9 +154,6 @@ echo '   ';
 
         echo "   <div class = \"media-body\">\n"; 
 
-
-
-
 echo ' <h4 class = "media-heading"> ';
 echo $rows['first_name'];
 echo " " ;
@@ -184,7 +186,10 @@ echo '   ';
 
 //                                       LIKE BUTTON
 
+
 $member=$rows['member_id'];
+
+
 
     //check like
     $likeQ="SELECT `member_id`, `post_id`FROM `post_like` WHERE member_id='$mem_id' and post_id='$postid' ;";
@@ -209,6 +214,10 @@ echo "</button>\n";
   echo "</button>\n";
     } 
 }
+
+
+// Number of likes
+
 
 $countlikes = "SELECT COUNT(post_like.member_id) as likes
 FROM post_like

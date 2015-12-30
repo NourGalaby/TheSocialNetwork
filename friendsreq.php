@@ -14,6 +14,21 @@ if ($conn->connect_error) {
 }
 ?>
 
+<?php 
+$member =0; //must have for navbar
+ if(!isset($_SESSION["S_user_id"]))
+ {
+ echo ' <meta http-equiv="refresh" content="1;url=SignUp.html" />';
+ }
+ else {
+
+ $EmailAdress=$_SESSION["S_Email"];
+ $mem_id=$_SESSION["S_user_id"];
+
+$id = $mem_id;}
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -46,15 +61,17 @@ body {
 <!--BOOOODDDDYYYYYYY-->
 
 <body>
+<<<<<<< HEAD
 <?php
 include('navbar.php');
 include('append_notification.php');
   ?>
 
 
+
 <div class="container">
 
-<h1>Friend requests</h1>
+<h1>Friend Requests..</h1>
     <div class="panel">
       <div class="panel-body">
         <div class = "media">
@@ -93,27 +110,25 @@ $result = mysqli_query($conn, $friend);
         echo '</h4>';
         echo ' ';
         echo ($about);	
-        echo "</div>\n";
+        echo "<br>";
         echo "<br>";
 		
 $member_id =$memberid;
 
-echo "<form action='acceptedreq.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-info\" id=\"Confirm\" name='member_id' value=$member_id>\n";
-echo "<span class=\"glyphicon\"></span> Confirm\n";
+echo "<form class=\"btn-group\" action='acceptedreq.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-sm btn-info\" id=\"Confirm\" name='member_id' value=$member_id>\n";
+echo "<span class=\"glyphicon glyphicon-ok\"></span> Confirm\n";
 echo "</button>\n";
 echo " </form>\n";
-	  
-	  
-        echo "<br>";
-		
 	
-echo "<form action='deletereq.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-danger\" id=\"Delete request\" name='member_id' value=$member_id>\n";
-echo "<span class=\"glyphicon\"></span> Delete request\n";
+echo "<form  class=\"btn-group\" action='deletereq.php' method='POST'>\n";
+echo "<button type=\"submit\" class=\"btn btn-sm btn-danger\" id=\"Delete request\" name='member_id' value=$member_id>\n";
+echo "<span class=\"glyphicon glyphicon-remove\"></span> Delete\n";
 echo "</button>\n";
 echo " </form>\n";	
-		
+echo "</div>\n";
+echo "<hr>";
+
 		
     }
 

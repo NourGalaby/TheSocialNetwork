@@ -14,6 +14,22 @@ if ($conn->connect_error) {
 }
 ?>
 
+<?php 
+$member =0; //must have for navbar
+ if(!isset($_SESSION["S_user_id"]))
+ {
+ echo ' <meta http-equiv="refresh" content="1;url=SignUp.html" />';
+ }
+ else {
+
+ $EmailAdress=$_SESSION["S_Email"];
+ $mem_id=$_SESSION["S_user_id"];
+
+$id = $mem_id;}
+
+
+?>
+
 <?php
 /*
 // Search by name
@@ -142,6 +158,24 @@ body {
                 <span class="icon-bar"></span>
             </button>
           <a class="navbar-brand" href="homepage.php"> <img src="logo.png" alt="Brand"></a>
+            <p class="navbar-text navbar-left">
+      Logged in as: 
+<?php 
+
+$query=mysqli_query($conn,"SELECT member.first_name,member.Last_name
+  FROM member WHERE member.member_id=$mem_id") or die(mysql_error());
+
+WHILE ($rows = mysqli_fetch_array($query)){
+echo "<b>";
+echo $rows['first_name'];
+echo " " ;
+echo $rows['Last_name'];
+echo "</b>";
+}
+?>
+
+</p>
+
             </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -152,7 +186,7 @@ body {
       </form>
 <form action="profile.php" class="navbar-form navbar-right" method="post">
         <div class="form-group">
-         <input type="submit" class="btn btn-success"  value="View Your Profile"  >
+         <input type="submit" class="btn btn-info"  value="View Your Profile"  >
         </div>
       </form>
 
@@ -163,7 +197,7 @@ body {
                <input type = "text" class = "form-control" id="search" name= "search" placeholder="What are you looking for?">
               
                <span class = "input-group-btn">
-                  <button class = "btn btn-default" type = "submit">
+                  <button class = "btn btn-info" type = "submit">
                      Search
                   </button>
                   </div>
@@ -180,7 +214,9 @@ body {
 
 <h1>Search Results..</h1>
     <div class="panel panel-info">
-    <div class="panel-heading"><b>Results By Name</b></div>
+    <div class="panel-heading">
+<h3 class="panel-title"><b>Results by Name</b></h3>
+    </div>
 
       <div class="panel-body">
 
@@ -234,7 +270,10 @@ $result = mysqli_query($conn, $sel);
 </div>
 </div>
 <div class="panel panel-info">
-          <div class="panel-heading"><b>Results By Email Address</b></div>
+          <div class="panel-heading">
+<h3 class="panel-title"><b>Results by Email Address</b></h3>
+
+          </div>
 
       <div class="panel-body">
         <div class = "media">
@@ -284,7 +323,10 @@ $result = mysqli_query($conn, $sel);
 </div>
 </div>
 <div class="panel panel-info">
-    <div class="panel-heading"><b>Results By Phone Number</b></div>
+    <div class="panel-heading">
+<h3 class="panel-title"><b>Results by Phone Number</b></h3>
+
+    </div>
 
       <div class="panel-body">
         <div class = "media">
@@ -338,7 +380,10 @@ $result = mysqli_query($conn, $sel);
 </div>
 </div>
 <div class="panel panel-info">
-          <div class="panel-heading"><b>Results By Hometown</b></div>
+          <div class="panel-heading">
+<h3 class="panel-title"><b>Results by Hometown</b></h3>
+
+          </div>
 
       <div class="panel-body">
         <div class = "media">
@@ -391,7 +436,10 @@ $result = mysqli_query($conn, $sel);
 </div>
 </div>
 <div class="panel panel-info">
-          <div class="panel-heading"><b>Results By Post</b></div>
+          <div class="panel-heading">
+<h3 class="panel-title"><b>Results by Posts</b></h3>
+
+          </div>
 
       <div class="panel-body">
         <div class = "media">
