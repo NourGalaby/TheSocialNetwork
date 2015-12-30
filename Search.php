@@ -179,8 +179,11 @@ body {
 <div class="container">
 
 <h1>Search Results..</h1>
-    <div class="panel">
+    <div class="panel panel-info">
+    <div class="panel-heading"><b>Results By Name</b></div>
+
       <div class="panel-body">
+
         <div class = "media">
 
 <?php
@@ -188,7 +191,6 @@ body {
 $sel = "SELECT * FROM member WHERE first_name like'$Searchfor%' OR last_name like'$Searchfor%' ";
 $result = mysqli_query($conn, $sel);
 
-echo "Results by Name"."<br>";
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         
@@ -226,11 +228,20 @@ echo "Results by Name"."<br>";
         echo "<br>";
     }
 
+?>
 
+</div>
+</div>
+</div>
+<div class="panel panel-info">
+          <div class="panel-heading"><b>Results By Email Address</b></div>
+
+      <div class="panel-body">
+        <div class = "media">
+<?php 
   // Search by Full email
 $sel = "SELECT * FROM member WHERE email='$Searchfor' ";
 $result = mysqli_query($conn, $sel);
-echo "Results by Email"."<br>";
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         
@@ -267,12 +278,23 @@ echo "Results by Email"."<br>";
         //echo($memberid);
         echo "<br>";
     }
+?>
+
+</div>
+</div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading"><b>Results By Phone Number</b></div>
+
+      <div class="panel-body">
+        <div class = "media">
+
+<?php
 
 
 // Search by Full phone number
 $sel = "SELECT * FROM member WHERE phone_number='$Searchfor' ";
 $result = mysqli_query($conn, $sel);
-echo "Results by Phone Number"."<br>";
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         
@@ -310,12 +332,22 @@ echo "Results by Phone Number"."<br>";
         echo "<br>";
     }
 
+?>
 
+</div>
+</div>
+</div>
+<div class="panel panel-info">
+          <div class="panel-heading"><b>Results By Hometown</b></div>
+
+      <div class="panel-body">
+        <div class = "media">
+
+<?php 
 
     // Search by Full phone number
 $sel = "SELECT * FROM member WHERE hometown='$Searchfor' ";
 $result = mysqli_query($conn, $sel);
-echo "Results by Hometown"."<br>";
     // output data of each row
     while($row = mysqli_fetch_assoc($result)) {
         
@@ -352,12 +384,24 @@ echo "Results by Hometown"."<br>";
         //echo($memberid);
         echo "<br>";
     }
+
+?>
+
+</div>
+</div>
+</div>
+<div class="panel panel-info">
+          <div class="panel-heading"><b>Results By Post</b></div>
+
+      <div class="panel-body">
+        <div class = "media">
+
+<?php
 
 $post=mysqli_query($conn,"SELECT post.caption , post.post_date, member.first_name,member.Last_name,member.profile_pic,member.member_id FROM post 
 JOIN member ON post.member_id = member.member_id
 WHERE  post.caption LIKE '%$Searchfor%' ");
 
-echo "Results by Post Caption"."<br>";
 WHILE ($rows = mysqli_fetch_array($post)){
   $mime = "image/jpeg";
 echo "<a class = \"pull-left\" href = \"#\">\n";
