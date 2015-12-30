@@ -149,6 +149,6 @@ $query=mysqli_query($conn,$sqlinsert);
 }
 // END OF PROFILE PICTURE ----------------------------------------------------------------------------
 
-//echo ' <meta http-equiv="refresh" content="0;url=profile.php"/>';
+header('Location: ' .'profile.php');
 
 ?>
