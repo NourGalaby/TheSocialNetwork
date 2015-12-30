@@ -63,6 +63,7 @@ img.emoji {
   <!-- NAVBAR -->
 <?php
 include('navbar.php');
+include('append_notification.php');
   ?>
 
 
@@ -109,13 +110,13 @@ include('navbar.php');
 $id = $mem_id;
 
 //print each post
-$sql = "SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image,post.post_id
+$sql = "SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image,post.post_id,member.member_id
 FROM member  
 INNER JOIN post  
 ON post.member_id= member.member_id
 WHERE post.is_public='true'
 UNION
-SELECT l.first_name,l.last_name,l.profile_pic,post.post_date,post.caption,post.image,post.post_id
+SELECT l.first_name,l.last_name,l.profile_pic,post.post_date,post.caption,post.image,post.post_id,l.member_id
 FROM member as m 
 INNER Join friend_list as  f 
 on m.member_id = f.member_id
@@ -125,7 +126,7 @@ Join member as l
 on post.member_id = l.member_id
 WHERE m.member_id=$id AND post.is_public='false'
 UNION
-SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image,post.post_id
+SELECT member.first_name,member.last_name,member.profile_pic,post.post_date,post.caption,post.image,post.post_id,member.member_id
 FROM member 
 JOIN post
 ON post.member_id=member.member_id
@@ -182,11 +183,31 @@ echo '   ';
 
 //                                       LIKE BUTTON
 
-echo "<form action='like.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-sm btn-primary\" id=\"like\" name='post_id' value=$postid>\n";
-echo "<span class=\"glyphicon glyphicon-thumbs-up\"></span> Like\n";
+$member=$rows['member_id'];
+
+    //check like
+    $likeQ="SELECT `member_id`, `post_id`FROM `post_like` WHERE member_id='$mem_id' and post_id='$postid' ;";
+    if($result = mysqli_query($conn, $likeQ)){
+
+    if(mysqli_num_rows($result) > 0){
+    //liked
+    
+    //                                       LIKE BUTTON
+    echo "<form >\n";
+echo "<button  class=\"btn btn-sm btn-danger disabled\" id=\"like\" name='post_id' value=$postid>\n";
+echo "<span class=\"glyphicon glyphicon-ok\"></span> Liked\n";
 echo "</button>\n";
 
+    }else{
+      //no like
+
+  echo "<form action='like.php' method='POST'>\n";
+  echo "<button type=\"submit\" class=\"btn btn-sm btn-primary\" id=\"like\" name='post_id' value=$postid  >\n";
+  echo "<input id=\"a\" name=\"member_id\" value=$member hidden=\"true\">";
+  echo "<span class=\"glyphicon glyphicon-thumbs-up\"></span> Like\n";
+  echo "</button>\n";
+    } 
+}
 
 $countlikes = "SELECT COUNT(post_like.member_id) as likes
 FROM post_like

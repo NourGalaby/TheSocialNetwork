@@ -6,7 +6,7 @@ include("connect.php");
 
 $mem_id=$_SESSION["S_user_id"];
 
-
+$member=0;
 $conn = new mysqli($servername, $db_username, $db_password,$db_name);
 // Check connection
 if ($conn->connect_error) {
@@ -45,50 +45,10 @@ body {
 <!--BOOOODDDDYYYYYYY-->
 
 <body>
-
-<!--NAVBAR-->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">              
-                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-          <a class="navbar-brand" href="homepage.php"> <img src="logo.png" alt="Brand"></a>
-            </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       <form action="Session_Die.php" class="navbar-form navbar-right" method="post">
-        <div class="form-group">
-         <input type="submit" class="btn btn-danger"  value="Logout"  >
-        </div>
-      </form>
-<form action="profile.php" class="navbar-form navbar-right" method="post">
-        <div class="form-group">
-         <input type="submit" class="btn btn-success"  value="View Your Profile"  >
-        </div>
-      </form>
-
-      <form class="navbar-form navbar-left" action="search.php" method="post">
-           <div class = "col-lg-6">
-            <div class = "input-group">
-                <div class="col-sm-1">
-               <input type = "text" class = "form-control" id="search" name= "search" placeholder="What are you looking for?">
-              
-               <span class = "input-group-btn">
-                  <button class = "btn btn-default" type = "submit">
-                     Search
-                  </button>
-                  </div>
-               </span>
-            </div>
-         </div>
-      </form>
-    </div>
-  </div>
-</nav>
+<?php
+include('navbar.php');
+include('append_notification.php');
+  ?>
 
 
 <div class="container">

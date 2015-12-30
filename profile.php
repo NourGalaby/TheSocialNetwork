@@ -123,8 +123,8 @@ echo "</script>";
 
   <script type="text/javascript"> 
 
-//init notification
-var Notify = require('alex/notifyjs');
+
+
   </script>
   <style type="text/css">  
 body {  
