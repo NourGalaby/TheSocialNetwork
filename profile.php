@@ -54,7 +54,7 @@ $addfriendbutton="Add Friend";
 if($result1 = mysqli_query($conn, $addquery)){
 
     if(mysqli_num_rows($result1) > 0){
-   echo "here";
+ //  echo "here";
 $disabled_button = "disabled";
 $addfriendbutton="Pending";
 
