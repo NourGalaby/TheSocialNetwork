@@ -319,27 +319,22 @@ echo "<a class = \"pull-center\" href = \"#\">\n";
 		
 		//                                       LIKE BUTTON
 		echo "<form >\n";
-echo "<button  class=\"btn btn-danger disabled\" id=\"like\" name='post_id' value=$postid>\n";
-echo "<span class=\"glyphicon glyphicon-heart\"></span> Liked\n";
+echo "<button  class=\"btn btn-sm btn-danger disabled\" id=\"like\" name='post_id' value=$postid>\n";
+echo "<span class=\"glyphicon glyphicon-ok\"></span> Liked\n";
 echo "</button>\n";
-echo " </form>\n";
+
 		}else{
 			//no like
-			
-			
-			echo "<form action='like.php' method='POST'>\n";
-echo "<button type=\"submit\" class=\"btn btn-success\" id=\"like\" name='post_id' value=$postid  >\n";
-echo "<input id=\"a\" name=\"member_id\" value=$member hidden=\"true\">";
-echo "<span class=\"glyphicon glyphicon-heart\"></span> Like\n";
-echo "</button>\n";
-echo " </form>\n";
+
+	echo "<form action='like.php' method='POST'>\n";
+  echo "<button type=\"submit\" class=\"btn btn-sm btn-primary\" id=\"like\" name='post_id' value=$postid  >\n";
+  echo "<input id=\"a\" name=\"member_id\" value=$member hidden=\"true\">";
+  echo "<span class=\"glyphicon glyphicon-thumbs-up\"></span> Like\n";
+  echo "</button>\n";
 		}	
-		}
+}
 		
 //                                       LIKE BUTTON
-
-
-
 
 $countlikes = "SELECT COUNT(post_like.member_id) as likes
 FROM post_like
@@ -355,11 +350,10 @@ WHILE ($rows2 = mysqli_fetch_array($countq)){
   echo $rows2['likes'];
   echo "</span>\n";
   echo "<br>";
+
+  echo " </form>\n";
+
 }
-echo " </form>\n";
-
-
-
 //                                       END OF LIKE BUTTON
 echo "</div>\n";
 echo "<hr>";
