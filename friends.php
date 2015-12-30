@@ -93,7 +93,7 @@ $result = mysqli_query($conn, $friend);
         
         $firstname =$row["first_name"] ;
         $lastname =$row["last_name"] ;
-        $memberid =$row["member_id"] ;
+        $memberid =$row["friend_id"] ;
         $image=$row["profile_pic"] ;
         $about=$row["about_me"];
         $mime = "image/jpeg";
