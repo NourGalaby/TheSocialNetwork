@@ -110,6 +110,7 @@ echo "</script>";
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
   <script src="ajax.js"> </script>
   <script src="addajax.js"> </script>
+    <script src="notifyajax.js"> </script>
    <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>  
     <script src="emoji.js"> </script>
 
@@ -119,6 +120,12 @@ echo "</script>";
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript"> 
+
+//init notification
+var Notify = require('alex/notifyjs');
+  </script>
   <style type="text/css">  
 body {  
  
@@ -146,6 +153,7 @@ img.emoji {
   <!-- NAVBAR -->
 <?php
 include('navbar.php');
+include('append_notification.php');
   ?>
   
   <!-- HELLOOOOOO -->

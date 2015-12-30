@@ -28,7 +28,26 @@ if ($conn->connect_error) {
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <style type="text/css">  
+ <script type="text/javascript">
+ 
+var message ="Hello , its me " ;
+var type= 'info'; 
+ var html = '<div class="alert alert-' + type + ' alert-dismissable page-alert">';    
+    html += '<button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>';
+    html += message;
+    html += '</div>';    
+    $(html).hide().prependTo('#noty-holder').slideDown();
+      $('.page-alert .close').click(function(e) {
+        e.preventDefault();
+        $(this).closest('.page-alert').slideUp();
+    });
+
+ </script>
+
+  <style type="text/css"> 
+
+
+
 body {  
   background-image: url("back.png");
   background-size: 100%;
@@ -46,6 +65,7 @@ body {
   <!-- NAVBAR -->
 <?php
 include('navbar.php');
+include('append_notification.php');
   ?>
 
 
