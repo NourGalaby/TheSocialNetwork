@@ -26,6 +26,7 @@ $id = $mem_id;}
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
   <script src="ajax.js"> </script>
   <script src="script.js"> </script>
+     <script src="notifyajax.js"> </script>
   <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>  
   <script src="emoji.js"> </script>
   <title>Home</title>

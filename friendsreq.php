@@ -21,6 +21,7 @@ if ($conn->connect_error) {
 <head>
   <script src="jquery.js" type="text/javascript" language="javascript"></script> 
   <script src="ajax.js"> </script>
+     <script src="notifyajax.js"> </script>
   <script src="script.js"> </script>
   <title>Friend request</title>
   <meta charset="utf-8">

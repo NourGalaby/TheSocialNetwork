@@ -28,7 +28,7 @@ $(document).ready(function(){
             },
             complete: poll
         });
-    }, 1000);
+    }, 2000);
 })();
 
 function createNoty(message, type) {
