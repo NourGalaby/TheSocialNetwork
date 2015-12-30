@@ -27,9 +27,7 @@ if($query=mysqli_query($conn,$Q2) > 0){
 	
 
 }
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 
-
-echo "<br>  <br> You will be redirirected to the main page in 1 second  <br> ";
-echo ' <meta http-equiv="refresh" content="0;url=profile.php" />';
 
 ?>
