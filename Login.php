@@ -12,7 +12,7 @@ $sql = "SELECT * FROM member WHERE email='$Email'";
 
 if($result = mysqli_query($conn, $sql)){
     if(mysqli_num_rows($result) == 0){
-    echo("Incorrect Email or Password");}
+  echo ' <meta http-equiv="refresh" content="1;url=SignUp.html?1" />';
 
 
 else{
