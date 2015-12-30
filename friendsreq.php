@@ -61,7 +61,7 @@ body {
 <!--BOOOODDDDYYYYYYY-->
 
 <body>
-<<<<<<< HEAD
+
 <?php
 include('navbar.php');
 include('append_notification.php');
