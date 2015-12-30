@@ -19,7 +19,7 @@ $member = $_GET["ID"];
 else
 $member=$mem_id;
 
-
+$disabled_t="disabled";
 
 //check friends S
  $arefriends = false;
@@ -49,6 +49,7 @@ $addfriendbutton="Friend ";
 
 $disabled_button = "active";
 $addfriendbutton="Add Friend";
+$disabled_t="";
 
 //check if I added him
 if($result1 = mysqli_query($conn, $addquery)){
@@ -57,6 +58,7 @@ if($result1 = mysqli_query($conn, $addquery)){
  //  echo "here";
 $disabled_button = "disabled";
 $addfriendbutton="Pending";
+$disabled_t="disabled";
 
     }
   }
@@ -68,6 +70,7 @@ if($result2 = mysqli_query($conn, $HEaddquery)){
    
 $disabled_button = "disabled";
 $addfriendbutton="This person added you";
+$disabled_t="disabled";
 
 
     }
@@ -211,7 +214,7 @@ echo "</center>";
 
 
 <form action='' method='POST'>
-    <center> <button type="submit" class="btn btn-danger <?php echo $disabled_button ?>" id="addfriend" name="addfriend" id = "Add Freind" > 
+    <center> <button type="submit" <?php echo $disabled_t ?> class="btn btn-danger <?php echo $disabled_button ?>" id="addfriend" name="addfriend" id = "Add Freind" > 
       <span class="glyphicon glyphicon-user"></span> 
       <?php echo $addfriendbutton  ?>
 

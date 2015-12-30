@@ -27,7 +27,11 @@ echo "1";
  }
 
 
+ echo ' <meta http-equiv="refresh" content="0;url=profile.php?ID=$hisID" />';
 
+}else{
 
+	 echo ' <meta http-equiv="refresh" content="0;url=profile.php" />';
 }
+
   ?>
